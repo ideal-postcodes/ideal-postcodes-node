@@ -4,7 +4,7 @@ Get a full list of addresses for any given UK postcode using the Ideal-Postcodes
 
 ## Getting Started
 
-Getting started is easy. You can get UK postcodes in your app in minutes.
+Implementation can be finished in minutes. Simply install, apply your key and you can start performing UK address lookups.
 
 **Installation**
 
@@ -37,20 +37,20 @@ idealPostcodes.lookupPostcode("ID1 1QD", function (error, result) {
 	console.log(result); 	
 });
 
-#=> Will output an array of addresses
-# {
-#   "result": [
-#     {
-#       "postcode": "ID1 1QD",
-#       "post_town": "LONDON",
-#       "line_1": "Kingsley Hall",
-#       "line_2": "Powis Road",
-#       "line_3": ""
-#     }
-#   ],
-#   "code": 2000,
-#   "message": "Success"
-# }
+// => Will output an array of addresses
+//  {
+//    "result": [
+//      {
+//        "postcode": "ID1 1QD",
+//        "post_town": "LONDON",
+//        "line_1": "Kingsley Hall",
+//        "line_2": "Powis Road",
+//        "line_3": ""
+//      }
+//    ],
+//    "code": 2000,
+//    "message": "Success"
+//  }
 
 ```
 
@@ -62,3 +62,6 @@ We charge _2p_ per [external](https://ideal-postcodes.co.uk/termsandconditions#e
 
 ## Documentation
 More documentation can be found [here](https://ideal-postcodes.co.uk/documentation)
+
+## License
+MIT
