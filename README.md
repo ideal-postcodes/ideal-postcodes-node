@@ -4,34 +4,55 @@ Get a full list of addresses for any given UK postcode using the Ideal-Postcodes
 
 ## Getting Started
 
-Install it
+Getting started is easy. You can get UK postcodes in your app in minutes.
+
+**Installation**
 
 ```bash
 npm install ideal-postcodes
 ```
-	
 
+**Get an API Key**
+
+Get a key at [Ideal-Postcodes.co.uk](https://ideal-postcodes.co.uk). Try out the service with the test postcode 'ID1 1QD'
+
+**Configuration**
+
+Include your api key when requiring the ideal-postcodes module, will return an instance that you can use to make lookups.
 
 ```javascript
-<div id="postcode_lookup_field"></div>
+var api_key = "your key goes here"
+var idealPostcodes = require('ideal-postcodes')(api_key)
 ```
 
-5) Call idealPostcodes() on your empty div tag wrapped in a jQuery object, passing your API key and CSS selectors to indicate where the results should be piped to.
+## Usage
 
-```html
-<script>
-$('#postcode_lookup_field').idealPostcodes({
-	api_key: 'ak_Iddqd8Idkfa7Idchoppers8',  // Set your API key
-	address_line_one: '#first_line',	// Enter CSS selectors to your input...
-	address_line_two: '#second_line',	// fields to pipe your results
-	address_line_three: '#third_line',
-	post_town_line: '#town',
-	postcode_line: '#postcode'
+Perform lookups by calling #lookupPostode. Test using the postcode "ID1 1QD".
+
+If no addresses are found, the method will return an empty array.
+
+```javascript
+idealPostcodes.lookupPostcode("ID1 1QD", function (error, result) {
+	if (error) throw error; // Implement some error handling
+	console.log(result); 	
 });
-</script>
-```
 
-6) Test using the postcode "ID1 1QD"
+#=> Will output an array of addresses
+# {
+#   "result": [
+#     {
+#       "postcode": "ID1 1QD",
+#       "post_town": "LONDON",
+#       "line_1": "Kingsley Hall",
+#       "line_2": "Powis Road",
+#       "line_3": ""
+#     }
+#   ],
+#   "code": 2000,
+#   "message": "Success"
+# }
+
+```
 
 ## Registering
 
