@@ -8,9 +8,13 @@ Implementation can be finished in minutes. Simply install, apply your key and yo
 
 **Installation**
 
+Install using node package manager.
+
 ```bash
 npm install ideal-postcodes
 ```
+
+Remember to include it in package.json for portability.
 
 **Get an API Key**
 
@@ -18,7 +22,7 @@ Get a key at [Ideal-Postcodes.co.uk](https://ideal-postcodes.co.uk). Try out the
 
 **Configuration**
 
-Include your api key when requiring the ideal-postcodes module, will return an instance that you can use to make lookups.
+Include your api key when requiring the ideal-postcodes module. This will return an object instance you can use to perform lookups using the Ideal Postcodes API.
 
 ```javascript
 var api_key = "your key goes here"
@@ -27,31 +31,27 @@ var idealPostcodes = require('ideal-postcodes')(api_key)
 
 ## Usage
 
-Perform lookups by calling #lookupPostode. Test using the postcode "ID1 1QD".
-
-If no addresses are found, the method will return an empty array.
+Perform lookups by calling **#lookupPostode(postcode, callback)** using the test postcode "ID1 1QD". This function is asynchronous and so takes 2 arguments, the postcode and a callback to handle the response.
 
 ```javascript
-idealPostcodes.lookupPostcode("ID1 1QD", function (error, result) {
+idealPostcodes.lookupPostcode("ID1 1QD", function (error, addresses) {
 	if (error) throw error; // Implement some error handling
-	console.log(result); 	
+	console.log(addresses); 	
 });
 
 // => Will output an array of addresses
-//  {
-//    "result": [
-//      {
-//        "postcode": "ID1 1QD",
-//        "post_town": "LONDON",
-//        "line_1": "Kingsley Hall",
-//        "line_2": "Powis Road",
-//        "line_3": ""
-//      }
-//    ],
-//    "code": 2000,
-//    "message": "Success"
-//  }
-
+//	[ {
+//		postcode: 'ID1 1QD',
+//		post_town: 'LONDON',
+//		line_1: 'Kingsley Hall',
+//		line_2: 'Powis Road',
+//		line_3: '' },
+//	{ 
+//		postcode: 'ID1 1QD',
+//		post_town: 'LONDON',
+//		line_1: '36 Craven Street
+// 		
+// 		and so on...
 ```
 
 ## Registering
