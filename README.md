@@ -18,7 +18,7 @@ Remember to include it in package.json for portability.
 
 **Get an API Key**
 
-Get a key at [Ideal-Postcodes.co.uk](https://ideal-postcodes.co.uk). Try out the service with the test postcode 'ID1 1QD'
+Get a key at [Ideal-Postcodes.co.uk](https://ideal-postcodes.co.uk). You can try out the service with the test postcode 'ID1 1QD'
 
 **Configuration**
 
@@ -31,7 +31,9 @@ var idealPostcodes = require('ideal-postcodes')(api_key)
 
 ## Usage
 
-Perform lookups by calling **#lookupPostode(postcode, callback)** using the test postcode "ID1 1QD". This function is asynchronous and so takes 2 arguments, the postcode and a callback to handle the response.
+Perform lookups by calling **#lookupPostode(postcode, callback)**. This function is asynchronous and so takes 2 arguments, the postcode and a callback to handle the response.
+
+Use the postcode "ID1 1QD" to test the service.
 
 ```javascript
 idealPostcodes.lookupPostcode("ID1 1QD", function (error, addresses) {
