@@ -43,17 +43,16 @@ idealPostcodes.lookupPostcode("ID1 1QD", function (error, addresses) {
 
 // => Will output an array of addresses
 //	[ {
-//		postcode: 'ID1 1QD',
-//		post_town: 'LONDON',
-//		line_1: 'Kingsley Hall',
-//		line_2: 'Powis Road',
-//		line_3: '' },
-//	{ 
-//		postcode: 'ID1 1QD',
-//		post_town: 'LONDON',
-//		line_1: '36 Craven Street
-// 		
-// 		and so on...
+//			postcode: 'ID1 1QD',
+//			post_town: 'LONDON',
+//			line_1: 'Kingsley Hall',
+//			line_2: 'Powis Road',
+//			line_3: '', 
+//			organisation_name: '',
+//			building_name: 'Kingsley Hall',
+//			udprn: 12345678 
+// 			...and so on...
+//		}, ...
 ```
 
 ## Registering
