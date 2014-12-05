@@ -25,7 +25,7 @@ describe("API Errors", function () {
 		client.api_key = api_key;
 	});
 
-	it ("should throw an error if invalid api key provided", function (done) {
+	it ("returns an error if invalid api key provided", function (done) {
 		client.api_key = "BOGUS";
 		client.lookupPostcode(testPostcode, function (error, result) {
 			assert.isNotNull(error);
@@ -33,14 +33,6 @@ describe("API Errors", function () {
 			done();
 		});
 	});
-
-	// Only works with exhausted token
-	// it ("should throw an error if token is exhausted", function (done) {
-	// 	client.lookupPostcode(realPostcode, function (error, result) {
-	// 		assert.throws(function () {
-	// 			if (error) throw error;
-	// 		}, /4020/);
-	// 		done();
-	// 	});
-	// });
+	it ("returns an error if token balance is depleted");
+	it ("returns an error if a daily or individual lookup limit has been breached");
 });
