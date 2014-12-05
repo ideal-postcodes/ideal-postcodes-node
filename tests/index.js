@@ -1,12 +1,14 @@
+"use strict";
+
 var api_key = "iddqd";
 var client = require('../lib/index.js')(api_key);
 var assert = require('chai').assert;
 var testPostcode = "ID1 1QD";
 var realPostcode = "SW1A 2AA";
-var helper = require("./helpers");
+var helper = require("./helpers/index.js");
 
 describe("Successful postcode lookup", function () {
-	it ("should provide an array of results for a successful lookup", function (done) {
+	it ("returns an array of addresses for a successful lookup", function (done) {
 		client.lookupPostcode(testPostcode, function (error, result) {
 			assert.isArray(result);
 			assert.isNull(error);
@@ -14,6 +16,7 @@ describe("Successful postcode lookup", function () {
 			done();
 		});
 	});
+	it ("returns an empty array if invalid postcode");
 });
 
 
