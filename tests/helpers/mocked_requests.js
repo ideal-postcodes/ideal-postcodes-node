@@ -21,5 +21,21 @@ module.exports = function (nock) {
 	  'access-control-allow-origin': '*',
 	  etag: '"-1764206614"' });
 
+	 nock('https://127.0.0.1:8016')
+	  .get('/')
+	  .reply(200, {"result":"success"}, { 'x-powered-by': 'Express',
+	  'content-type': 'application/json; charset=utf-8',
+	  'content-length': '20',
+	  etag: 'W/"14-6f9ca026"',
+	  date: 'Mon, 08 Dec 2014 16:05:46 GMT',
+	  connection: 'keep-alive' });
+
+	 nock('https://127.0.0.1:8016')
+	  .get('/invalidjson')
+	  .reply(200, "This is invalid JSON", { 'x-powered-by': 'Express',
+	  date: 'Mon, 08 Dec 2014 16:05:46 GMT',
+	  connection: 'keep-alive',
+	  'transfer-encoding': 'chunked' });
+
 	return nock;
 }
