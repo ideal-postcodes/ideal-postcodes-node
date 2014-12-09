@@ -91,5 +91,42 @@ module.exports = function (nock) {
   date: 'Tue, 09 Dec 2014 16:52:00 GMT',
   connection: 'keep-alive' });
 
+nock('https://localhost:1337')
+  .get('/v1/postcodes?api_key=gandhi&lonlat=-0.20864%2C51.48994')
+  .reply(200, {"result":[{"postcode":"W14 9DT","northings":178299,"eastings":524466,"longitude":-0.208644362766368,"latitude":51.4899488390558,"distance":1.029038833},{"postcode":"W14 9HP","northings":178250,"eastings":524497,"longitude":-0.208215353224691,"latitude":51.4895016535293,"distance":56.994463261},{"postcode":"W14 9DY","northings":178258,"eastings":524424,"longitude":-0.209263429936064,"latitude":51.4895896040625,"distance":58.264446841},{"postcode":"W14 9DB","northings":178351,"eastings":524497,"longitude":-0.208179766575366,"latitude":51.4904093484835,"distance":61.225730805},{"postcode":"W14 9DS","northings":178315,"eastings":524530,"longitude":-0.207717383841141,"latitude":51.4900785532037,"distance":65.908978852},{"postcode":"W14 9DD","northings":178330,"eastings":524392,"longitude":-0.209698749475355,"latitude":51.4902437086294,"distance":80.927798902},{"postcode":"W14 9HQ","northings":178234,"eastings":524517,"longitude":-0.207933075525138,"latitude":51.4893534603178,"distance":81.665905577},{"postcode":"W14 9HA","northings":178252,"eastings":524394,"longitude":-0.20969741729609,"latitude":51.4895422763055,"distance":85.744263257},{"postcode":"W14 9JP","northings":178212,"eastings":524461,"longitude":-0.208746986755546,"latitude":51.4891680625458,"distance":86.204807148}],"code":2000,"message":"Success"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '1867',
+  etag: '"1398164703"',
+  date: 'Tue, 09 Dec 2014 17:17:52 GMT',
+  connection: 'keep-alive' });
+
+nock('https://localhost:1337')
+  .get('/v1/postcodes?api_key=gandhi&lonlat=-0.20864%2C51.48994&radius=150')
+  .reply(200, {"result":[{"postcode":"W14 9DT","northings":178299,"eastings":524466,"longitude":-0.208644362766368,"latitude":51.4899488390558,"distance":1.029038833},{"postcode":"W14 9HP","northings":178250,"eastings":524497,"longitude":-0.208215353224691,"latitude":51.4895016535293,"distance":56.994463261},{"postcode":"W14 9DY","northings":178258,"eastings":524424,"longitude":-0.209263429936064,"latitude":51.4895896040625,"distance":58.264446841},{"postcode":"W14 9DB","northings":178351,"eastings":524497,"longitude":-0.208179766575366,"latitude":51.4904093484835,"distance":61.225730805},{"postcode":"W14 9DS","northings":178315,"eastings":524530,"longitude":-0.207717383841141,"latitude":51.4900785532037,"distance":65.908978852},{"postcode":"W14 9DD","northings":178330,"eastings":524392,"longitude":-0.209698749475355,"latitude":51.4902437086294,"distance":80.927798902},{"postcode":"W14 9HQ","northings":178234,"eastings":524517,"longitude":-0.207933075525138,"latitude":51.4893534603178,"distance":81.665905577},{"postcode":"W14 9HA","northings":178252,"eastings":524394,"longitude":-0.20969741729609,"latitude":51.4895422763055,"distance":85.744263257},{"postcode":"W14 9JP","northings":178212,"eastings":524461,"longitude":-0.208746986755546,"latitude":51.4891680625458,"distance":86.204807148},{"postcode":"W14 9HW","northings":178239,"eastings":524380,"longitude":-0.209903534856258,"latitude":51.4894285211699,"distance":104.595210821},{"postcode":"W14 9HF","northings":178201,"eastings":524517,"longitude":-0.20794470421238,"latitude":51.4890568867226,"distance":109.47997206},{"postcode":"W14 9DP","northings":178320,"eastings":524580,"longitude":-0.206995822379361,"latitude":51.4901124842008,"distance":115.798633997},{"postcode":"W14 9DR","northings":178320,"eastings":524580,"longitude":-0.206995822379361,"latitude":51.4901124842008,"distance":115.798633997},{"postcode":"W14 9DU","northings":178286,"eastings":524341,"longitude":-0.210448431668051,"latitude":51.489859484214,"distance":125.925213841},{"postcode":"W14 9JH","northings":178185,"eastings":524531,"longitude":-0.207748803762887,"latitude":51.4889100131304,"distance":130.243247789},{"postcode":"W14 9HT","northings":178192,"eastings":524387,"longitude":-0.209819309120183,"latitude":51.489004589589,"distance":132.439608837},{"postcode":"W14 9ES","northings":178377,"eastings":524574,"longitude":-0.207062101802514,"latitude":51.4906260680973,"distance":133.555321192},{"postcode":"W14 9JR","northings":178167,"eastings":524432,"longitude":-0.209180308303465,"latitude":51.4887700204829,"distance":135.470883132},{"postcode":"W14 9BY","northings":178432,"eastings":524497,"longitude":-0.20815122544182,"latitude":51.4911373017476,"distance":137.466669201},{"postcode":"W14 9BQ","northings":178429,"eastings":524509,"longitude":-0.207979526906195,"latitude":51.4911077004754,"distance":137.776661384},{"postcode":"W14 9EX","northings":178281,"eastings":524611,"longitude":-0.206563301015553,"latitude":51.4897551635068,"distance":145.697673642},{"postcode":"W14 9BJ","northings":178429,"eastings":524394,"longitude":-0.209635102832239,"latitude":51.4911329904169,"distance":149.645987283}],"code":2000,"message":"Success"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '4488',
+  etag: '"605360418"',
+  date: 'Tue, 09 Dec 2014 17:17:52 GMT',
+  connection: 'keep-alive' });
+
+
+nock('https://localhost:1337')
+  .get('/v1/postcodes?api_key=gandhi&lonlat=-0.20864%2C51.48994&radius=50')
+  .reply(200, {"result":[{"postcode":"W14 9DT","northings":178299,"eastings":524466,"longitude":-0.208644362766368,"latitude":51.4899488390558,"distance":1.029038833}],"code":2000,"message":"Success"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '260',
+  etag: '"926644714"',
+  date: 'Tue, 09 Dec 2014 17:17:52 GMT',
+  connection: 'keep-alive' });
+
+nock('https://localhost:1337')
+  .get('/v1/postcodes?api_key=gandhi&lonlat=-0.20864%2C51.48994&limit=1')
+  .reply(200, {"result":[{"postcode":"W14 9DT","northings":178299,"eastings":524466,"longitude":-0.208644362766368,"latitude":51.4899488390558,"distance":1.029038833}],"code":2000,"message":"Success"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '260',
+  etag: '"926644714"',
+  date: 'Tue, 09 Dec 2014 17:17:52 GMT',
+  connection: 'keep-alive' });
+
 	return nock;
 }
