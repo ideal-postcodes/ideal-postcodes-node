@@ -2,6 +2,8 @@
 
 Ideal Postcodes is a simple JSON API to query UK postcodes and addresses. Find out more at [Ideal-Postcodes.co.uk](https://ideal-postcodes.co.uk/)
 
+Our API is based off Royal Mail's Postcode Address File and is updated daily. Each convenience method incurs a small charge (typically 2p) - free methods are labelled as free and based off open data sources.
+
 ## Getting Started
 
 **Install**
@@ -26,12 +28,16 @@ var idealPostcodes = require("ideal-postcodes")("<your_key_goes_here>")
 
 Each client instance provides a number of convenience methods to allow you to get specific jobs done quickly and easily. These convenience methods are listed below:
 
-### idealPostcodes.lookupPostcode(postcode, callback)
+### Get all addresses for a postcode [(docs)](https://ideal-postcodes.co.uk/documentation/postcodes#postcode)
 
-#### Get all addresses for a Postcode [(Documentation)](https://ideal-postcodes.co.uk/documentation/postcodes#postcode)
+This method will retrieve a complete list of addresses at a given postcode.
 
-- `postcode` (string) is the search postcode a string
-- `callback` (function) a standard javascript style callback which accepts 2 methods: `error` and `addresses`
+```
+idealPostcodes.lookupPostcode(postcode, callback)
+```
+
+- `postcode` (string). The postcode to search for.
+- `callback` (function). Standard callback which accepts 2 methods: `error` and `locations`
 
 Use the postcode "ID1 1QD" to test integration for free. The complete list of test postcodes is available in the [documentation](https://ideal-postcodes/documentation/postcodes).
 
@@ -56,12 +62,17 @@ idealPostcodes.lookupPostcode("ID1 1QD", function (error, addresses) {
 //		}, ...
 ```
 
-### idealPostcodes.queryLocation(location, callback)
 
-#### Get nearby postcode for a given geolocation [(Documentation)](https://ideal-postcodes.co.uk/documentation/postcodes#lonlat)
+### Get nearby postcode for a given geolocation [(docs)](https://ideal-postcodes.co.uk/documentation/postcodes#lonlat)
 
-- `location` (object) Requires a `longitude` (number) and `latitude` (number) attribute. `Limit` (number) and `radius` (number) are optional.
-- `callback` (function) a standard javascript style callback which accepts 2 methods: `error` and `locations`
+This method will retrieve the nearest postcodes for a given geolocation. (Free to use)
+
+```
+idealPostcodes.queryLocation(location, callback)
+```
+
+- `location` (object). Requires a `longitude` (number) and `latitude` (number) attribute. `Limit` (number) and `radius` (number) are optional.
+- `callback` (function). Standard callback which accepts 2 methods: `error` and `locations`
 
 ```javascript
 idealPostcodes.queryLocation({
@@ -98,11 +109,7 @@ idealPostcodes.lookupPostcode("ID1 1QD", function (error, addresses) {
 });
 ```
 
-Possible errors to look out for are listed in the [documentation](https://ideal-postcodes.co.uk/documentation/response-codes).
-
-## Registering
-
-We charge _2p_ per [external](https://ideal-postcodes.co.uk/termsandconditions#external) lookup.
+Possible errors to look out for are listed in the [documentation](https://ideal-postcodes.co.uk/documentatpion/response-codes).
 
 ## Documentation
 More documentation can be found [here](https://ideal-postcodes.co.uk/documentation/node-js)
