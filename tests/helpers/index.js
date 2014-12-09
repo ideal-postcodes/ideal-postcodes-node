@@ -1,6 +1,7 @@
 "use strict";
 
 var nock = require("nock");
+var assert = require("chai").assert;
 
 if (process.env.LIVE) {
 	require("./mock_server.js");
@@ -12,6 +13,61 @@ if (process.env.RECORD) {
 	nock.recorder.rec();
 }
 
+var testPostcode = "ID1 1QD";
+var invalidPostcode = "ID1 KFA";
+var limitReachedPostcode = "ID1 CHOP";
+var balanceDepletedPostcode = "ID1 CLIP";
+
+var isTestPostcodeResult = function (result) {
+	assert.isArray(result);
+	result.forEach(function (address) {
+		assert.equal(address.postcode, testPostcode);
+		isAddressObject(address);
+	});
+};
+
+var isInvalidKeyError = function (error) {
+	assert.match(error.message, /invalid\skey/i);
+};
+
+var isLimitReachedError = function (error) {
+	assert.match(error.message, /limit\sreached/i);
+};
+
+var isBalanceDepletedError = function (error) {
+	assert.match(error.message, /key\sbalance\sdepleted/i);
+};
+
+var isPostcodeLocationObject = function (o) {
+	assert.property(o, "longitude");
+	assert.property(o, "latitude");
+	assert.property(o, "postcode");
+	assert.property(o, "northings");
+	assert.property(o, "eastings");
+};
+
+var isAddressObject = function (o) {
+	assert.property(o, "postcode");
+	assert.property(o, "line_1");
+	assert.property(o, "line_2");
+	assert.property(o, "line_3");
+	assert.property(o, "post_town");
+	assert.property(o, "premise");
+	assert.property(o, "ward");
+	assert.property(o, "district");
+	assert.property(o, "thoroughfare");
+};
+
 module.exports = {
-	nock: nock
+	nock: nock,
+	testPostcode: testPostcode,
+	isTestPostcodeResult: isTestPostcodeResult,
+	invalidPostcode: invalidPostcode,
+	isInvalidKeyError: isInvalidKeyError,
+	limitReachedPostcode: limitReachedPostcode,
+	isLimitReachedError: isLimitReachedError,
+	balanceDepletedPostcode: balanceDepletedPostcode,
+	isBalanceDepletedError: isBalanceDepletedError,
+	isPostcodeLocationObject: isPostcodeLocationObject,
+	isAddressObject: isAddressObject
 };
