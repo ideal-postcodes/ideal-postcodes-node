@@ -37,7 +37,7 @@ idealPostcodes.lookupPostcode(postcode, callback)
 ```
 
 - `postcode` (string). The postcode to search for.
-- `callback` (function). Standard callback which accepts 2 methods: `error` and `locations`
+- `callback` (function). Standard callback which accepts 2 methods: `error` and `addresses`
 
 Use the postcode "ID1 1QD" to test integration for free. The complete list of test postcodes is available in the [documentation](https://ideal-postcodes/documentation/postcodes).
 
