@@ -22,7 +22,8 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "qs": "~2.3.3"
+    "qs": "~2.3.3",
+    "lodash": "~2.4.1"
   },
   "devDependencies": {
     "chai": "~1.10.0",
