@@ -43,7 +43,7 @@ describe("Errors module", function () {
 				"code": 4010
 			});
 			assert.isNotNull(error);
-			assert.match(error.message, /invalid\skey/i);
+			helper.isInvalidKeyError(error);
 		});
 
 		it ("detects insufficient balance", function () {
@@ -51,7 +51,7 @@ describe("Errors module", function () {
 				"code": 4020
 			});
 			assert.isNotNull(error);
-			assert.match(error.message, /key\sbalance\sdepleted/i);
+			helper.isBalanceDepletedError(error);
 		});
 
 		it ("detects limit breach", function () {
@@ -59,7 +59,7 @@ describe("Errors module", function () {
 				"code": 4021
 			});
 			assert.isNotNull(error);
-			assert.match(error.message, /limit\sreached/i);
+			helper.isLimitReachedError(error);
 		});
 
 		it ("returns an error if invalid no code response from API", function () {
