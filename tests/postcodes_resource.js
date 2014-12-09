@@ -26,7 +26,7 @@ describe ("Postcodes Resource", function () {
 				done();
 			});
 		});
-		it ("returns an 4040 response for invalid postcode", function () {
+		it ("returns a 4040 response for invalid postcode", function (done) {
 			var testPostcode = "ID1 KFA";
 			postcodeResource.get(testPostcode, function (error, response) {
 				if (error) return done(error);
@@ -35,6 +35,7 @@ describe ("Postcodes Resource", function () {
 			});
 		});
 	});
+
 	describe("geolocate", function () {
 		it ("returns an array of addresses for valid postcode");
 		it ("returns an empty array for invalid postcode");
