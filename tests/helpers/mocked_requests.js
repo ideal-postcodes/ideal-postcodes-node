@@ -128,5 +128,68 @@ nock('https://localhost:1337')
   date: 'Tue, 09 Dec 2014 17:17:52 GMT',
   connection: 'keep-alive' });
 
+nock('https://localhost:1337')
+  .get('/v1/postcodes/ID1%201QD?api_key=gandhi')
+  .reply(200, {"result":[{"postcode":"ID1 1QD","postcode_inward":"1QD","postcode_outward":"ID1","post_town":"LONDON","dependant_locality":"","double_dependant_locality":"","thoroughfare":"Barons Court Road","dependant_thoroughfare":"","building_number":"2","building_name":"","sub_building_name":"","po_box":"","department_name":"","organisation_name":"","udprn":25962203,"postcode_type":"S","su_organisation_indicator":"","delivery_point_suffix":"1G","line_1":"2 Barons Court Road","line_2":"","line_3":"","premise":"2","country":"England","county":"","district":"Hammersmith and Fulham","ward":"North End","longitude":-0.208644362766368,"latitude":51.4899488390558,"eastings":524466,"northings":178299},{"postcode":"ID1 1QD","postcode_inward":"1QD","postcode_outward":"ID1","post_town":"LONDON","dependant_locality":"","double_dependant_locality":"","thoroughfare":"Barons Court Road","dependant_thoroughfare":"","building_number":"2","building_name":"Basement Flat","sub_building_name":"","po_box":"","department_name":"","organisation_name":"","udprn":52618355,"postcode_type":"S","su_organisation_indicator":"","delivery_point_suffix":"3A","line_1":"Basement Flat","line_2":"2 Barons Court Road","line_3":"","premise":"Basement Flat, 2","country":"England","county":"","district":"Hammersmith and Fulham","ward":"North End","longitude":-0.208644362766368,"latitude":51.4899488390558,"eastings":524466,"northings":178299},{"postcode":"ID1 1QD","postcode_inward":"1QD","postcode_outward":"ID1","post_town":"LONDON","dependant_locality":"","double_dependant_locality":"","thoroughfare":"Barons Court Road","dependant_thoroughfare":"","building_number":"4","building_name":"","sub_building_name":"","po_box":"","department_name":"","organisation_name":"","udprn":25962215,"postcode_type":"S","su_organisation_indicator":"","delivery_point_suffix":"1W","line_1":"4 Barons Court Road","line_2":"","line_3":"","premise":"4","country":"England","county":"","district":"Hammersmith and Fulham","ward":"North End","longitude":-0.208644362766368,"latitude":51.4899488390558,"eastings":524466,"northings":178299},{"postcode":"ID1 1QD","postcode_inward":"1QD","postcode_outward":"ID1","post_town":"LONDON","dependant_locality":"","double_dependant_locality":"","thoroughfare":"Barons Court Road","dependant_thoroughfare":"","building_number":"4","building_name":"","sub_building_name":"Basement","po_box":"","department_name":"","organisation_name":"","udprn":25962189,"postcode_type":"S","su_organisation_indicator":"","delivery_point_suffix":"2P","line_1":"Basement","line_2":"4 Barons Court Road","line_3":"","premise":"Basement, 4","country":"England","county":"","district":"Hammersmith and Fulham","ward":"North End","longitude":-0.208644362766368,"latitude":51.4899488390558,"eastings":524466,"northings":178299},{"postcode":"ID1 1QD","postcode_inward":"1QD","postcode_outward":"ID1","post_town":"LONDON","dependant_locality":"","double_dependant_locality":"","thoroughfare":"Barons Court Road","dependant_thoroughfare":"","building_number":"6","building_name":"","sub_building_name":"","po_box":"","department_name":"","organisation_name":"","udprn":25962218,"postcode_type":"S","su_organisation_indicator":"","delivery_point_suffix":"1Y","line_1":"6 Barons Court Road","line_2":"","line_3":"","premise":"6","country":"England","county":"","district":"Hammersmith and Fulham","ward":"North End","longitude":-0.208644362766368,"latitude":51.4899488390558,"eastings":524466,"northings":178299},{"postcode":"ID1 1QD","postcode_inward":"1QD","postcode_outward":"ID1","post_town":"LONDON","dependant_locality":"","double_dependant_locality":"","thoroughfare":"Barons Court Road","dependant_thoroughfare":"","building_number":"8","building_name":"","sub_building_name":"","po_box":"","department_name":"","organisation_name":"","udprn":25962219,"postcode_type":"S","su_organisation_indicator":"","delivery_point_suffix":"1Z","line_1":"8 Barons Court Road","line_2":"","line_3":"","premise":"8","country":"England","county":"","district":"Hammersmith and Fulham","ward":"North End","longitude":-0.208644362766368,"latitude":51.4899488390558,"eastings":524466,"northings":178299},{"postcode":"ID1 1QD","postcode_inward":"1QD","postcode_outward":"ID1","post_town":"LONDON","dependant_locality":"","double_dependant_locality":"","thoroughfare":"Barons Court Road","dependant_thoroughfare":"","building_number":"59","building_name":"","sub_building_name":"","po_box":"","department_name":"","organisation_name":"ID Consulting Limited","udprn":25946509,"postcode_type":"S","su_organisation_indicator":"Y","delivery_point_suffix":"1N","line_1":"ID Consulting Limited","line_2":"59 Barons Court Road","line_3":"","premise":"59","country":"England","county":"","district":"Hammersmith and Fulham","ward":"North End","longitude":-0.208644362766368,"latitude":51.4899488390558,"eastings":524466,"northings":178299}],"code":2000,"message":"Success"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '6683',
+  etag: '"1136868456"',
+  date: 'Tue, 09 Dec 2014 23:13:56 GMT',
+  connection: 'keep-alive' });
+
+nock('https://localhost:1337')
+  .get('/v1/postcodes/ID1%20KFA?api_key=gandhi')
+  .reply(404, {"code":4040,"message":"Postcode Not Found"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '53',
+  etag: '"1406335465"',
+  date: 'Tue, 09 Dec 2014 23:13:56 GMT',
+  connection: 'keep-alive' });
+
+nock('https://localhost:1337')
+  .get('/v1/postcodes/undefined?api_key=foo')
+  .reply(401, {"code":4010,"message":"Invalid Key. For more information see http://ideal-postcodes.co.uk/documentation/response-codes#4010"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '135',
+  etag: '"-632160061"',
+  date: 'Tue, 09 Dec 2014 23:13:56 GMT',
+  connection: 'keep-alive' });
+
+nock('https://localhost:1337')
+  .get('/v1/postcodes/ID1%20CHOP?api_key=gandhi')
+  .reply(402, {"code":4021,"message":"Lookup Limit Reached. For more information see http://ideal-postcodes.co.uk/documentation/response-codes#4021"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '144',
+  etag: '"1445167850"',
+  date: 'Tue, 09 Dec 2014 23:13:56 GMT',
+  connection: 'keep-alive' });
+
+nock('https://localhost:1337')
+  .get('/v1/postcodes/ID1%20CLIP?api_key=gandhi')
+  .reply(402, {"code":4020,"message":"Token balance depleted. For more information see http://ideal-postcodes.co.uk/documentation/response-codes#4020"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '146',
+  etag: '"1304241290"',
+  date: 'Tue, 09 Dec 2014 23:13:56 GMT',
+  connection: 'keep-alive' });
+
+nock('https://localhost:1337')
+  .get('/v1/postcodes?api_key=gandhi&lonlat=-0.20864%2C51.48994')
+  .reply(200, {"result":[{"postcode":"W14 9DT","northings":178299,"eastings":524466,"longitude":-0.208644362766368,"latitude":51.4899488390558,"distance":1.029038833},{"postcode":"W14 9HP","northings":178250,"eastings":524497,"longitude":-0.208215353224691,"latitude":51.4895016535293,"distance":56.994463261},{"postcode":"W14 9DY","northings":178258,"eastings":524424,"longitude":-0.209263429936064,"latitude":51.4895896040625,"distance":58.264446841},{"postcode":"W14 9DB","northings":178351,"eastings":524497,"longitude":-0.208179766575366,"latitude":51.4904093484835,"distance":61.225730805},{"postcode":"W14 9DS","northings":178315,"eastings":524530,"longitude":-0.207717383841141,"latitude":51.4900785532037,"distance":65.908978852},{"postcode":"W14 9DD","northings":178330,"eastings":524392,"longitude":-0.209698749475355,"latitude":51.4902437086294,"distance":80.927798902},{"postcode":"W14 9HQ","northings":178234,"eastings":524517,"longitude":-0.207933075525138,"latitude":51.4893534603178,"distance":81.665905577},{"postcode":"W14 9HA","northings":178252,"eastings":524394,"longitude":-0.20969741729609,"latitude":51.4895422763055,"distance":85.744263257},{"postcode":"W14 9JP","northings":178212,"eastings":524461,"longitude":-0.208746986755546,"latitude":51.4891680625458,"distance":86.204807148}],"code":2000,"message":"Success"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '1867',
+  etag: '"1398164703"',
+  date: 'Tue, 09 Dec 2014 23:13:56 GMT',
+  connection: 'keep-alive' });
+
+nock('https://localhost:1337')
+  .get('/v1/postcodes?api_key=gandhi&lonlat=0%2C0')
+  .reply(200, {"result":[],"code":2000,"message":"Success"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '58',
+  etag: '"-963557841"',
+  date: 'Tue, 09 Dec 2014 23:13:56 GMT',
+  connection: 'keep-alive' });
+
 	return nock;
 }
