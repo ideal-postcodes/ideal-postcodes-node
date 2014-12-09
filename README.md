@@ -1,47 +1,48 @@
 # Ideal Postcodes Node.js API Wrapper
 
-Get a full list of addresses for any given UK postcode using the Ideal-Postcodes.co.uk API. We use the most accurate addressing database in the UK, Royal Mail's Postcode Address File.
+Ideal Postcodes is a simple JSON API to query UK postcodes and addresses. Find out more at [Ideal-Postcodes.co.uk](https://ideal-postcodes.co.uk/)
 
 ## Getting Started
 
-Implementation can be finished in minutes. Simply install, apply your key and you can start performing UK address lookups.
-
-**Installation**
-
-Install using node package manager.
+**Install**
 
 ```bash
 npm install ideal-postcodes
 ```
 
-Remember to include it in package.json for portability.
+**Create a Key**
 
-**Get an API Key**
+Sign up at [Ideal-Postcodes.co.uk](https://ideal-postcodes.co.uk) and create a key.
 
-Get a key at [Ideal-Postcodes.co.uk](https://ideal-postcodes.co.uk). You can try out the service with the test postcode 'ID1 1QD'
-
-**Configuration**
+**Configure**
 
 Include your api key when requiring the ideal-postcodes module. This will return an object instance you can use to perform lookups using the Ideal Postcodes API.
 
 ```javascript
-var api_key = "your key goes here"
-var idealPostcodes = require('ideal-postcodes')(api_key)
+var idealPostcodes = require("ideal-postcodes")("<your_key_goes_here>")
 ```
 
-## Usage
+## Methods
 
-Perform lookups by calling **#lookupPostode(postcode, callback)**. This function is asynchronous and so takes 2 arguments, the postcode and a callback to handle the response.
+Each client instance provides a number of convenience methods to allow you to get specific jobs done quickly and easily. These convenience methods are listed below:
 
-Use the postcode "ID1 1QD" to test the service.
+### idealPostcodes.lookupPostcode(postcode, callback)
+
+#### Get all addresses for a Postcode [(Documentation)](https://ideal-postcodes.co.uk/documentation/postcodes#postcode)
+
+- `postcode` (string) is the search postcode a string
+- `callback` (function) a standard javascript style callback which accepts 2 methods: `error` and `addresses`
+
+Use the postcode "ID1 1QD" to test integration for free. The complete list of test postcodes is available in the [documentation](https://ideal-postcodes/documentation/postcodes).
 
 ```javascript
 idealPostcodes.lookupPostcode("ID1 1QD", function (error, addresses) {
-	if (error) throw error; // Implement some error handling
+	if (error) {
+		// Implement some error handling
+	} 
 	console.log(addresses); 	
 });
 
-// => Will output an array of addresses
 //	[ {
 //			postcode: 'ID1 1QD',
 //			post_town: 'LONDON',
@@ -55,14 +56,57 @@ idealPostcodes.lookupPostcode("ID1 1QD", function (error, addresses) {
 //		}, ...
 ```
 
-## Registering
+### idealPostcodes.queryLocation(location, callback)
 
-PAF is licensed from the Royal Mail and is, unfortunately, not free to use. Ideal Postcodes aims to be simple to use and fairly priced to use for web and mobile developers.
+#### Get nearby postcode for a given geolocation [(Documentation)](https://ideal-postcodes.co.uk/documentation/postcodes#lonlat)
+
+- `location` (object) Requires a `longitude` (number) and `latitude` (number) attribute. `Limit` (number) and `radius` (number) are optional.
+- `callback` (function) a standard javascript style callback which accepts 2 methods: `error` and `locations`
+
+```javascript
+idealPostcodes.queryLocation({
+	longitude: -0.20864,	// Required
+	latitude: 51.48994,		// Required
+	limit: 10 		, 			// Optional, limits number of results
+	radius:	100						// Optional, limits search radius
+}, function (error, locations) {
+	if (error) {
+		// Implement some error handling
+	} 
+	console.log(locations); 	
+});
+
+//	[{
+// 		postcode: "W14 9DT",
+// 		northings: 178299,
+// 		eastings: 524466,
+// 		longitude: -0.208644362766368,
+// 		latitude: 51.4899488390558,
+// 		distance: 1.029038833
+// 		}, ...
+```
+
+## Error Handling
+
+Each convenience method adopts the standard javascript error handling method. I.e. Any error is passed as the first argument of the callback. E.g.
+
+```javascript
+idealPostcodes.lookupPostcode("ID1 1QD", function (error, addresses) {
+	if (error) {
+		// Handle your errors here
+	} 
+});
+```
+
+Possible errors to look out for are listed in the [documentation](https://ideal-postcodes.co.uk/documentation/response-codes).
+
+## Registering
 
 We charge _2p_ per [external](https://ideal-postcodes.co.uk/termsandconditions#external) lookup.
 
 ## Documentation
-More documentation can be found [here](https://ideal-postcodes.co.uk/documentation)
+More documentation can be found [here](https://ideal-postcodes.co.uk/documentation/node-js)
 
 ## License
+
 MIT
