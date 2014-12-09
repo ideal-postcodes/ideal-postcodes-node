@@ -27,6 +27,12 @@ describe("Base Resource Class", function () {
 			});
 		});
 		describe("Error scenarios", function () {
+			beforeEach(function () {
+				base = new Base({
+					host: "127.0.0.1",
+					port: 8016
+				});
+			});
 			if (process.env.LIVE) {
 				// Need to get nock to timeout
 				it ("returns an error when connection timeout", function (done) {
@@ -46,17 +52,51 @@ describe("Base Resource Class", function () {
 					});
 				});
 			}
-			it ("returns an error for invalid JSON", function (done) {
-				base = new Base({
-					host: "127.0.0.1",
-					port: 8016
+			it ("returns an error if invalid syntax submitted to API", function (done) {
+				base.request({
+					path: "/invalid_syntax",
+					method: "GET"
+				}, function (error, response) {
+					assert.isNotNull(error);
+					assert.match(error.message, /invalid\ssyntax\ssubmitted/i);
+					done();
 				});
-				var options = {
+			});
+			it ("returns an error if invalid key", function (done) {
+				base.request({
+					path: "/invalid_key",
+					method: "GET"
+				}, function (error, response) {
+					assert.isNotNull(error);
+					assert.match(error.message, /invalid\skey/i);
+					done();
+				});
+			});
+			it ("returns an error if key balance depleted", function (done) {
+				base.request({
+					path: "/balance_depleted",
+					method: "GET"
+				}, function (error, response) {
+					assert.isNotNull(error);
+					assert.match(error.message, /key\sbalance\sdepleted/i);
+					done();
+				});
+			});
+			it ("returns an error if limit reached", function (done) {
+				base.request({
+					path: "/limit_reached",
+					method: "GET"
+				}, function (error, response) {
+					assert.isNotNull(error);
+					assert.match(error.message, /limit\sreached/i);
+					done();
+				});
+			});
+			it ("returns an error for invalid JSON response from API", function (done) {
+				base.request({
 					path: "/invalidjson",
 					method: "GET"
-				};
-
-				base.request(options, function (error, response) {
+				}, function (error, response) {
 					assert.match(error.message, /invalid\sjson/i);
 					done();
 				});
