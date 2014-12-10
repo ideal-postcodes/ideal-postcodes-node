@@ -21,6 +21,9 @@ var balanceDepletedPostcode = "ID1 CLIP";
 var availableTestKey = "iddqd";
 var notAvailableTestKey = "idkfa";
 
+var testKey = "gandhi";
+var testSecret = "uk_hxp6ouk0rmyXoobVJnehrsQcdvTfb";
+
 var isTestPostcodeResult = function (result) {
 	assert.isArray(result);
 	result.forEach(function (address) {
@@ -74,5 +77,7 @@ module.exports = {
 	isPostcodeLocationObject: isPostcodeLocationObject,
 	isAddressObject: isAddressObject,
 	availableTestKey: availableTestKey,
-	notAvailableTestKey: notAvailableTestKey
+	notAvailableTestKey: notAvailableTestKey,
+	testKey: testKey,
+	testSecret: testSecret
 };

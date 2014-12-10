@@ -12,10 +12,10 @@ var testConfig = {
 var idealPostcodes;
 
 describe ("Postcode convenience methods", function () {
+	beforeEach(function () {
+		idealPostcodes = IdealPostcodes(testConfig);
+	});
 	describe("postcode lookup", function () {
-		beforeEach(function () {
-			idealPostcodes = IdealPostcodes(testConfig);
-		});
 		it ("returns addresses at a postcode", function (done) {
 			idealPostcodes.lookupPostcode(helper.testPostcode, function (error, result) {
 				if (error) return done(error);

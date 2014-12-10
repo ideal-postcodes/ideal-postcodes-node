@@ -6,8 +6,8 @@ var assert = require("chai").assert;
 var Keys = require("../lib/resources/keys.js");
 var keys;
 
-var testKey = "gandhi";
-var testSecret = "uk_hxp6ouk0rmyXoobVJnehrsQcdvTfb";
+var testKey = helper.testKey;
+var testSecret = helper.testSecret;
 
 describe ("Keys Resource", function () {
 	describe ("get", function () {
