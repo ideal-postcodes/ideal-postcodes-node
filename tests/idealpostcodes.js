@@ -1,6 +1,6 @@
 "use strict";
 
-var key;
+var key, secret;
 var IdealPostcodes = require('../lib/index.js');
 var assert = require('chai').assert;
 var helper = require("./helpers/");
@@ -23,7 +23,7 @@ describe ("IdealPostcodes", function () {
 		});
 		it ("initialises with new config if passed object", function () {
 			var newConfig = {
-				key: "foo",
+				key: "foob",
 				host: "bar",
 				port: "baz",
 				timeout: "quux"
@@ -32,7 +32,21 @@ describe ("IdealPostcodes", function () {
 			for (var setting in newConfig) {
 				assert.equal(idealPostcodes.config[setting], newConfig[setting]);
 			}
-		})
+		});
+		it ("initialises with secret if passed second argument", function () {
+			key = "foo";
+			secret = "bar";
+			idealPostcodes = IdealPostcodes(key, secret);
+			assert.equal(idealPostcodes.config.secret, secret);
+		});
+	});
+	
+	describe("setConfig", function () {
+		it ("assigns config attributes", function () {
+			var secret = "foo";
+			idealPostcodes.setConfig("secret", secret);
+			assert.equal(idealPostcodes.config.secret, secret);
+		});
 	});
 });
 
