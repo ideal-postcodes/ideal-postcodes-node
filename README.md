@@ -290,6 +290,9 @@ Possible errors to look out for are listed in the [documentation](https://ideal-
 
 ## Changelog
 
+*0.2.2*
+- Implemented [addresses resource](https://ideal-postcodes.co.uk/documentation/addresses)
+
 *0.2.1*
 - Implemented [keys resource](https://ideal-postcodes.co.uk/documentation/keys)
 
