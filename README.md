@@ -73,7 +73,7 @@ idealPostcodes.lookupAddress(searchQuery, callback)
 - `searchQuery` (string | object). The address to search for. If string is passed, the string is used as a search term and default settings are applied (limit 10 results, return first page). If an object is provided, this object requires a `query` attribute pointing to your search string. It also accepts optional `limit` and `page` attributes.
 - `callback` (function). Standard callback which accepts 2 arguments: `error` and `searchResults`
 
-Use the postcode "ID1 1QD" to test integration for free. The complete list of test methods is available in the [documentation](https://ideal-postcodes/documentation/addresses).
+Use the address "ID1 1QD" to test integration for free. The complete list of test methods is available in the [documentation](https://ideal-postcodes/documentation/addresses).
 
 ```javascript
 idealPostcodes.lookupAddress("ID1 1QD", function (error, searchResults) {
