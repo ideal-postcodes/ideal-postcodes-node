@@ -1,4 +1,4 @@
-# Ideal Postcodes Node.js API Wrapper
+# Ideal-Postcodes.co.uk Node.js Library [![Build Status](https://travis-ci.org/ideal-postcodes/ideal-postcodes-node.png)](https://travis-ci.org/ideal-postcodes/ideal-postcodes-node)
 
 Ideal Postcodes is a simple JSON API to query UK postcodes and addresses. Find out more at [Ideal-Postcodes.co.uk](https://ideal-postcodes.co.uk/)
 
@@ -180,6 +180,17 @@ idealPostcodes.lookupPostcode("ID1 1QD", function (error, addresses) {
 ```
 
 Possible errors to look out for are listed in the [documentation](https://ideal-postcodes.co.uk/documentatpion/response-codes).
+
+## Changelog
+
+*0.2.1*
+- Implemented [keys resource](https://ideal-postcodes.co.uk/documentation/keys)
+
+*0.2.0*
+
+- Major rewrite to make way for more convenience methods
+- Implemented [postcodes resource](https://ideal-postcodes.co.uk/documentation/postcodes). Added location-based postcode searches
+- Overhauled test suite
 
 ## Documentation
 More documentation can be found [here](https://ideal-postcodes.co.uk/documentation/node-js)
