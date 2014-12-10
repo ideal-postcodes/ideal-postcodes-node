@@ -9,7 +9,7 @@ Our API is based off Royal Mail's Postcode Address File and is updated daily. Ea
 **Install**
 
 ```bash
-npm install ideal-postcodes
+$ npm install ideal-postcodes
 ```
 
 **Create a Key**
@@ -18,10 +18,10 @@ Sign up at [Ideal-Postcodes.co.uk](https://ideal-postcodes.co.uk) and create a k
 
 **Configure**
 
-Include your api key when requiring the ideal-postcodes module. This will return an object instance you can use to perform lookups using the Ideal Postcodes API.
+Include your api key when requiring the ideal-postcodes module. This will return an client, which can be used to perform various tasks on the API such as looking up a postcode.
 
 ```javascript
-var idealPostcodes = require("ideal-postcodes")("<your_key_goes_here>")
+var idealPostcodes = require("ideal-postcodes")("your_key_goes_here")
 ```
 
 ## Methods
@@ -37,7 +37,7 @@ idealPostcodes.lookupPostcode(postcode, callback)
 ```
 
 - `postcode` (string). The postcode to search for.
-- `callback` (function). Standard callback which accepts 2 methods: `error` and `addresses`
+- `callback` (function). Standard callback which accepts 2 arguments: `error` and `addresses`
 
 Use the postcode "ID1 1QD" to test integration for free. The complete list of test postcodes is available in the [documentation](https://ideal-postcodes/documentation/postcodes).
 
@@ -72,7 +72,7 @@ idealPostcodes.queryLocation(location, callback)
 ```
 
 - `location` (object). Requires a `longitude` (number) and `latitude` (number) attribute. `Limit` (number) and `radius` (number) are optional.
-- `callback` (function). Standard callback which accepts 2 methods: `error` and `locations`
+- `callback` (function). Standard callback which accepts 2 arguments: `error` and `locations`
 
 ```javascript
 idealPostcodes.queryLocation({
@@ -95,6 +95,76 @@ idealPostcodes.queryLocation({
 // 		latitude: 51.4899488390558,
 // 		distance: 1.029038833
 // 		}, ...
+```
+
+## Utility Methods
+
+Listed below are free utility methods, e.g. finding the status of your key.
+
+### Find out if your key is in a usable state [(docs)](https://ideal-postcodes.co.uk/documentation/keys#key)
+
+Find out if your key is in a usable state. E.g. it has a positive balance, it is currently under your defined usage limits, etc.
+
+```
+idealPostcodes.keyAvailability(callback)
+```
+
+- `callback` (function). Standard callback which accepts 2 arguments: `error` and `key`. Key contains a boolean `available` attribute which indicates whether your key is currently usable.
+
+```javascript
+idealPostcodes.getAvailability(function (error, key) {
+	if (error) {
+		// Implement some error handling
+	} 
+	console.log(key.avaialble); // => true 	
+});
+```
+
+### Find out private key information [(docs)](https://ideal-postcodes.co.uk/documentation/keys#details)
+
+This method reveals private information about your key such as the lookup balance, whitelisted URLs, etc. It requires a secret key to be invoked.
+
+```
+idealPostcodes.keyDetails(callback)
+```
+
+- `callback` (function). Standard callback which accepts 2 arguments: `error` and `key`.
+
+```javascript
+idealPostcodes.keyDetails(function (error, key) {
+	if (error) {
+		// Implement some error handling
+	} 
+	console.log(key); 	
+});
+
+// {
+//   "lookups_remaining": 8288,
+//   "daily_limit": {
+//       "limit": 1000,
+//       "consumed": 361
+//   },
+//   "individual_limit": {
+//       "limit": 15
+//   },
+//   "allowed_urls": [
+//       "https://www.foo.com",
+//       "https://www.bar.co.uk"
+//   ],
+//   "notifications": {
+//       "emails": ["baz@bar.co.uk"],
+//       "enabled": true
+//   },
+//       "automated_topups": {
+//       "enabled": true
+//   }
+// }
+```
+
+If you intend to use this method, you must pass your secret key (which can be found on your [account page](https://ideal-postcodes.co.uk/account)) along with your API key when instantiating the client. E.g.
+
+```javascript
+var idealPostcodes = require("ideal-postcodes")("your_key_goes_here", "secret_key_goes_second");
 ```
 
 ## Error Handling
