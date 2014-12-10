@@ -24,6 +24,11 @@ var notAvailableTestKey = "idkfa";
 var testKey = "gandhi";
 var testSecret = "uk_hxp6ouk0rmyXoobVJnehrsQcdvTfb";
 
+var testUdprn = "0";
+var invalidUdprn = "-1";
+var balanceDepletedUdprn = "-2";
+var limitReachedUdprn = "-3";
+
 var isTestPostcodeResult = function (result) {
 	assert.isArray(result);
 	result.forEach(function (address) {
@@ -79,5 +84,9 @@ module.exports = {
 	availableTestKey: availableTestKey,
 	notAvailableTestKey: notAvailableTestKey,
 	testKey: testKey,
-	testSecret: testSecret
+	testSecret: testSecret,
+	testUdprn: testUdprn,
+	invalidUdprn: invalidUdprn,
+	balanceDepletedUdprn: balanceDepletedUdprn,
+	limitReachedUdprn: limitReachedUdprn
 };
