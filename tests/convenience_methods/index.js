@@ -1,2 +1,3 @@
-require("./postcodes.js");
 require("./keys.js");
+require("./postcodes.js");
+require("./addresses.js");
