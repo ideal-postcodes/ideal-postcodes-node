@@ -18,6 +18,9 @@ var invalidPostcode = "ID1 KFA";
 var limitReachedPostcode = "ID1 CHOP";
 var balanceDepletedPostcode = "ID1 CLIP";
 
+var availableTestKey = "iddqd";
+var notAvailableTestKey = "idkfa";
+
 var isTestPostcodeResult = function (result) {
 	assert.isArray(result);
 	result.forEach(function (address) {
@@ -69,5 +72,7 @@ module.exports = {
 	balanceDepletedPostcode: balanceDepletedPostcode,
 	isBalanceDepletedError: isBalanceDepletedError,
 	isPostcodeLocationObject: isPostcodeLocationObject,
-	isAddressObject: isAddressObject
+	isAddressObject: isAddressObject,
+	availableTestKey: availableTestKey,
+	notAvailableTestKey: notAvailableTestKey
 };

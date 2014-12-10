@@ -191,5 +191,59 @@ nock('https://localhost:1337')
   date: 'Tue, 09 Dec 2014 23:13:56 GMT',
   connection: 'keep-alive' });
 
+nock('https://localhost:1337')
+  .get('/v1/keys/iddqd')
+  .reply(200, {"result":{"available":true},"code":2000,"message":"Success"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '83',
+  etag: '"2124296415"',
+  date: 'Wed, 10 Dec 2014 11:06:32 GMT',
+  connection: 'keep-alive' });
+
+nock('https://localhost:1337')
+  .get('/v1/keys/idkfa')
+  .reply(200, {"result":{"available":false},"code":2000,"message":"Success"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '84',
+  etag: '"2073554680"',
+  date: 'Wed, 10 Dec 2014 11:06:32 GMT',
+  connection: 'keep-alive' });
+
+nock('https://localhost:1337')
+  .get('/v1/keys/foo')
+  .reply(401, {"code":4010,"message":"Invalid Key. For more information see http://ideal-postcodes.co.uk/documentation/response-codes#4010"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '135',
+  etag: '"-632160061"',
+  date: 'Wed, 10 Dec 2014 11:06:33 GMT',
+  connection: 'keep-alive' });
+
+nock('https://localhost:1337')
+  .get('/v1/keys/gandhi?user_token=uk_hxp6ouk0rmyXoobVJnehrsQcdvTfb')
+  .reply(200, {"result":{"lookups_remaining":20948,"daily_limit":{"limit":null,"consumed":0},"individual_limit":{"limit":null},"allowed_urls":[],"notifications":{"emails":["cablanchard2@gmail.com"],"enabled":true},"automated_topups":{"enabled":true}},"code":2000,"message":"Success"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '405',
+  etag: '"1816126214"',
+  date: 'Wed, 10 Dec 2014 11:06:33 GMT',
+  connection: 'keep-alive' });
+
+nock('https://localhost:1337')
+  .get('/v1/keys/foo?user_token=uk_hxp6ouk0rmyXoobVJnehrsQcdvTfb')
+  .reply(401, {"code":4010,"message":"Invalid Key. For more information see http://ideal-postcodes.co.uk/documentation/response-codes#4010"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '135',
+  etag: '"-632160061"',
+  date: 'Wed, 10 Dec 2014 11:06:33 GMT',
+  connection: 'keep-alive' });
+
+nock('https://localhost:1337')
+  .get('/v1/keys/gandhi?user_token=foo')
+  .reply(401, {"code":4012,"message":"Forbidden"}, { 'access-control-allow-origin': '*',
+  'content-type': 'application/json; charset=utf-8',
+  'content-length': '44',
+  etag: '"-1747820685"',
+  date: 'Wed, 10 Dec 2014 11:06:33 GMT',
+  connection: 'keep-alive' });
+
 	return nock;
 }
