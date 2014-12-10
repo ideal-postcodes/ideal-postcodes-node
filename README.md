@@ -30,16 +30,16 @@ Each client instance provides a number of convenience methods to allow you to ge
 
 ### Get all addresses for a postcode [(docs)](https://ideal-postcodes.co.uk/documentation/postcodes#postcode)
 
-This method will retrieve a complete list of addresses at a given postcode.
+Retrieve a complete list of addresses at a given postcode.
 
 ```
 idealPostcodes.lookupPostcode(postcode, callback)
 ```
 
-- `postcode` (string). The postcode to search for.
+- `postcode` (string). The postcode to search.
 - `callback` (function). Standard callback which accepts 2 arguments: `error` and `addresses`
 
-Use the postcode "ID1 1QD" to test integration for free. The complete list of test postcodes is available in the [documentation](https://ideal-postcodes/documentation/postcodes).
+Use the postcode "ID1 1QD" to test integration for free. The complete list of test postcodes is available in the [documentation](https://ideal-postcodes/documentation/postcodes). Note that this method returns an empty array if no matching postcode is found.
 
 ```javascript
 idealPostcodes.lookupPostcode("ID1 1QD", function (error, addresses) {
@@ -62,10 +62,63 @@ idealPostcodes.lookupPostcode("ID1 1QD", function (error, addresses) {
 //		}, ...
 ```
 
+### Search for an address [(docs)](https://ideal-postcodes.co.uk/documentation/addresses#query)
+
+This will perform a search for addresses which match your search term.
+
+```
+idealPostcodes.lookupAddress(searchQuery, callback)
+```
+
+- `searchQuery` (string | object). The address to search for. If string is passed, the string is used as a search term and default settings are applied (limit 10 results, return first page). If an object is provided, this object requires a `query` attribute pointing to your search string. It also accepts optional `limit` and `page` attributes.
+- `callback` (function). Standard callback which accepts 2 arguments: `error` and `searchResults`
+
+Use the postcode "ID1 1QD" to test integration for free. The complete list of test methods is available in the [documentation](https://ideal-postcodes/documentation/addresses).
+
+```javascript
+idealPostcodes.lookupAddress("ID1 1QD", function (error, searchResults) {
+	if (error) {
+		// Implement some error handling
+	} 
+	console.log(searchResults); 	
+});
+
+// or alternatively
+
+idealPostcodes.lookupAddress({
+	query: "ID1 1QD",  	// required
+	limit: 10,				 	// optional
+	page: 0 						// optional
+}, function (error, searchResults) {
+	if (error) {
+		// Implement some error handling
+	} 
+	console.log(searchResults); 	
+});
+
+// {
+//   "result":{
+//     "total":2,
+//     "limit":10,
+//     "page":0,
+//     "hits":[{
+//       "dependant_locality" : "",
+//       "postcode_type" : "L",
+//       "po_box" : "",
+//       "post_town" : "LONDON",
+//       "delivery_point_suffix" : "1A",
+//       "double_dependant_locality" : "",
+//       "su_organisation_indicator" : " ",
+//       "longitude" : -0.127695242183412,
+//       "department_name" : "",
+//       "district" : "Westminster",
+
+//       continued...
+```
 
 ### Get nearby postcode for a given geolocation [(docs)](https://ideal-postcodes.co.uk/documentation/postcodes#lonlat)
 
-This method will retrieve the nearest postcodes for a given geolocation. (Free to use)
+Retrieve the nearest postcodes for a given geolocation. (Free to use)
 
 ```
 idealPostcodes.queryLocation(location, callback)
@@ -95,6 +148,60 @@ idealPostcodes.queryLocation({
 // 		latitude: 51.4899488390558,
 // 		distance: 1.029038833
 // 		}, ...
+```
+
+### Retrieve an address using UDPRN [(docs)](https://ideal-postcodes.co.uk/documentation/addresses#address)
+
+Retrieve the specific address for a specific UDPRN.
+
+```
+idealPostcodes.lookupUdprn(udprn, callback)
+```
+
+- `udprn` (string). A number which uniquely identifies the address.
+- `callback` (function). Standard callback which accepts 2 arguments: `error` and `locations`
+
+Note that this method returns `null` if no matching address is found. Use the test UDPRN "0" to test integration for free.
+
+```javascript
+idealPostcodes.lookupUdprn(0, function (error, address) {
+	if (error) {
+		// Implement some error handling
+	} 
+	console.log(address); 
+});
+
+// {
+//	"postcode":"ID1 1QD",
+//	"postcode_inward":"IQD",
+//	"postcode_outward":"ID1",
+//	"post_town":"LONDON",
+//	"dependant_locality":"",
+//	"double_dependant_locality":"",
+//	"thoroughfare":"Barons Court Road",
+//	"dependant_thoroughfare":"",
+//	"building_number":"2",
+//	"building_name":"",
+//	"sub_building_name":"",
+//	"po_box":"",
+//	"department_name":"",
+//	"organisation_name":"",
+//	"udprn":25962203,
+//	"postcode_type":"S",
+//	"su_organisation_indicator":"",
+//	"delivery_point_suffix":"1G",
+//	"line_1":"2 Barons Court Road",
+//	"line_2":"",
+//	"line_3":"",
+//	"premise":"2",
+//	"county": "",
+//	"district": "Hammersmith and Fulham",
+//	"ward": "North End",
+//	"longitude":-0.208644362766368,
+//	"latitude":51.4899488390558,
+//	"eastings":524466,
+//	"northings":178299
+// }   
 ```
 
 ## Utility Methods
