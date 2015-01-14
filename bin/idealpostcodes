@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+
+"use strict";
+
+var fs = require("fs");
+var path = require("path");
+var commander = require("commander");
+var cli = require(path.join(__dirname, "../lib/cli"));
+var pkg = JSON.parse(fs.readFileSync(path.join(__dirname, "../package.json")));
+
+commander.version(pkg.version)
+
+commander.on("--help", function () {
+	console.log("Ideal Postcodes CLI (v" + pkg.version + ")");
+	console.log("");
+	console.log("Basic Example:");
+	console.log("");
+	console.log("Stream usage logs for your key, authenticated with your key and secret:");
+	console.log("$ idealpostcodes logs --key <your_key> --secret <your_secret>");
+	console.log("");
+	console.log("Alternatively, authenticate with environment variables:");
+	console.log("$ IDEALPOSTCODES_KEY=<your_key> IDEALPOSTCODES_SECRET=<your_secret> idealpostcodes logs");
+	console.log("");
+	console.log("");
+});
+
+commander.command("logs")
+	.option("-k --key <key>", "Your api key")
+	.option("-s --secret <secret>", "Your secret key")
+	.option("-j --json", "Return results in json")
+	.option("-q --quiet", "Hide all debug messages")
+	.description("Stream your API usage logs in real time")
+	.action(cli.startLogClient);
+
+commander.parse(process.argv);
