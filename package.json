@@ -1,9 +1,12 @@
 {
   "name": "ideal-postcodes",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "UK Postcode lookup API. Wrapper for Ideal-Postcodes.co.uk API uses Royal Mail's Postcode Address File (PAF).",
   "main": "lib/index.js",
   "homepage": "https://ideal-postcodes.co.uk/",
+  "bin": {
+    "idealpostcodes": "./bin/idealpostcodes"
+  },
   "scripts": {
     "test": "NODE_ENV=test mocha tests/"
   },
@@ -22,8 +25,12 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
+    "chalk": "^0.5.1",
+    "commander": "^2.6.0",
+    "lodash": "~2.4.1",
     "qs": "~2.3.3",
-    "lodash": "~2.4.1"
+    "socket.io-client": "^1.2.1",
+    "text-table": "^0.2.0"
   },
   "devDependencies": {
     "chai": "~1.10.0",
