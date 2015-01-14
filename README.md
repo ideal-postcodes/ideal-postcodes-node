@@ -288,7 +288,48 @@ idealPostcodes.lookupPostcode("ID1 1QD", function (error, addresses) {
 
 Possible errors to look out for are listed in the [documentation](https://ideal-postcodes.co.uk/documentatpion/response-codes).
 
+## Command Line Interface (Beta)
+
+This module is also packaged with a command line interface to inspect request to our API on your key in real-time. This functionality is currently in beta, but can be used to quickly debug issues you may have with integration.
+
+The CLI needs to be installed globally (potentially with sudo privileges depending on your setup).
+
+```bash
+$ npm install -g ideal-postcodes
+```
+
+By installing globally, the `idealpostcodes` CLI will be available in your $PATH. Start listening to for incoming requests on your key with:
+
+```bash
+$ idealpostcodes logs -k <your_key> -s <your_secret>
+```
+
+Alternatively, you can store your keys as environment variables.
+
+```bash
+$ export export IDEALPOSTCODES_KEY="<your_key>"
+$ export IDEALPOSTCODES_SECRET="<your_secret>"
+$ idealpostcodes logs
+```
+
+Available flags for `$ idealpostcodes logs`
+```bash
+$ idealpostcodes logs --json # Output logs as single line JSON objects
+$ idealpostcodes logs --quiet # Strip out debug messages such as connection, reconnection or disconnect messages
+```
+
+Since the CLI writes to stdout, you can pipe the output to perform a range of tasks in your terminal. Some examples...
+
+```bash
+$ idealpostcodes logs > idealpostcodes.log # Write the output to a file
+$ idealpostcodes logs | grep 'IP Address' # Write the IP address of incoming requests to console
+$ idealpostcodes logs --json --quiet | script.sh # Process raw JSON logs in a script
+```
+
 ## Changelog
+
+*0.2.3*
+- Implemented command line interfance to stream key logs in real-time.
 
 *0.2.2*
 - Implemented [addresses resource](https://ideal-postcodes.co.uk/documentation/addresses)
