@@ -290,7 +290,7 @@ Possible errors to look out for are listed in the [documentation](https://ideal-
 
 ## Command Line Interface (Beta)
 
-This module is also packaged with a command line interface to inspect request to our API on your key in real-time. This functionality is currently in beta, but can be used to quickly debug issues you may have with integration.
+This module is also packaged with a command line interface, which provides a real-time stream logs of detailing incoming API requests on your key. This is useful for integrating and debugging issues.
 
 The CLI needs to be installed globally (potentially with sudo privileges depending on your setup).
 
@@ -301,7 +301,7 @@ $ npm install -g ideal-postcodes
 By installing globally, the `idealpostcodes` CLI will be available in your $PATH. Start listening to for incoming requests on your key with:
 
 ```bash
-$ idealpostcodes logs -k <your_key> -s <your_secret>
+$ idealpostcodes logstream -k <your_key> -s <your_secret>
 ```
 
 Alternatively, you can store your keys as environment variables.
@@ -309,21 +309,21 @@ Alternatively, you can store your keys as environment variables.
 ```bash
 $ export export IDEALPOSTCODES_KEY="<your_key>"
 $ export IDEALPOSTCODES_SECRET="<your_secret>"
-$ idealpostcodes logs
+$ idealpostcodes logstream
 ```
 
-Available flags for `$ idealpostcodes logs`
+Available flags for `$ idealpostcodes logstream`
 ```bash
-$ idealpostcodes logs --json # Output logs as single line JSON objects
-$ idealpostcodes logs --quiet # Strip out debug messages such as connection, reconnection or disconnect messages
+$ idealpostcodes logstream --json # Output logs as single line JSON objects
+$ idealpostcodes logstream --quiet # Strip out debug messages such as connection, reconnection or disconnect messages
 ```
 
 Since the CLI writes to stdout, you can pipe the output to perform a range of tasks in your terminal. Some examples...
 
 ```bash
-$ idealpostcodes logs > idealpostcodes.log # Write the output to a file
-$ idealpostcodes logs | grep 'IP Address' # Write the IP address of incoming requests to console
-$ idealpostcodes logs --json --quiet | script.sh # Process raw JSON logs in a script
+$ idealpostcodes logstream > idealpostcodes.log # Write the output to a file
+$ idealpostcodes logstream | grep 'IP Address' # Write the IP address of incoming requests to console
+$ idealpostcodes logstream --json --quiet | script.sh # Process raw JSON logs in a script
 ```
 
 ## Changelog

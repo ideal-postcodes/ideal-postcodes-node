@@ -16,15 +16,15 @@ commander.on("--help", function () {
 	console.log("Basic Example:");
 	console.log("");
 	console.log("Stream usage logs for your key, authenticated with your key and secret:");
-	console.log("$ idealpostcodes logs --key <your_key> --secret <your_secret>");
+	console.log("$ idealpostcodes logstream --key <your_key> --secret <your_secret>");
 	console.log("");
 	console.log("Alternatively, authenticate with environment variables:");
-	console.log("$ IDEALPOSTCODES_KEY=<your_key> IDEALPOSTCODES_SECRET=<your_secret> idealpostcodes logs");
+	console.log("$ IDEALPOSTCODES_KEY=<your_key> IDEALPOSTCODES_SECRET=<your_secret> idealpostcodes logstream");
 	console.log("");
 	console.log("");
 });
 
-commander.command("logs")
+commander.command("logstream")
 	.option("-k --key <key>", "Your api key")
 	.option("-s --secret <secret>", "Your secret key")
 	.option("-j --json", "Return results in json")
