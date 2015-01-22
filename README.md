@@ -219,7 +219,7 @@ idealPostcodes.keyAvailability(callback)
 - `callback` (function). Standard callback which accepts 2 arguments: `error` and `key`. Key contains a boolean `available` attribute which indicates whether your key is currently usable.
 
 ```javascript
-idealPostcodes.getAvailability(function (error, key) {
+idealPostcodes.keyAvailability(function (error, key) {
 	if (error) {
 		// Implement some error handling
 	} 
