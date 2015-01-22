@@ -28,8 +28,15 @@ commander.command("logstream")
 	.option("-k --key <key>", "Your api key")
 	.option("-s --secret <secret>", "Your secret key")
 	.option("-j --json", "Return results in json")
-	.option("-q --quiet", "Hide all debug messages")
+	.option("-q --quiet", "Hide all informational notices")
+	.option("-d --debug", "Show low level debug messages")
 	.description("Stream your API usage logs in real time")
 	.action(cli.startLogClient);
+
+commander.command("info")
+	.option("-k --key <key>", "Your api key")
+	.option("-s --secret <secret>", "Your secret key")
+	.description("View information on your key")
+	.action(cli.getKeyInfo);
 
 commander.parse(process.argv);
