@@ -290,7 +290,7 @@ Possible errors to look out for are listed in the [documentation](https://ideal-
 
 ## Command Line Interface (Beta)
 
-This module is also packaged with a command line interface, which provides a real-time stream logs of detailing incoming API requests on your key. This is useful for integrating and debugging issues.
+This module is also bundled with a command line interface, which provides a couple of useful tools: Real-time log streaming and key status lookup.
 
 The CLI needs to be installed globally (potentially with sudo privileges depending on your setup).
 
@@ -298,24 +298,37 @@ The CLI needs to be installed globally (potentially with sudo privileges dependi
 $ npm install -g ideal-postcodes
 ```
 
-By installing globally, the `idealpostcodes` CLI will be available in your $PATH. Start listening to for incoming requests on your key with:
+By installing globally, the `idealpostcodes` CLI will be available in your $PATH so you can run commands in your terminal. E.g.
 
 ```bash
 $ idealpostcodes logstream -k <your_key> -s <your_secret>
 ```
 
-Alternatively, you can store your keys as environment variables.
+Typically the command line tool will require you to enter your api_key and secret_key. You can store your keys as environment variables to save you from having to look them up everytime.
 
 ```bash
 $ export export IDEALPOSTCODES_KEY="<your_key>"
 $ export IDEALPOSTCODES_SECRET="<your_secret>"
-$ idealpostcodes logstream
+$ idealpostcodes <command>
 ```
 
-Available flags for `$ idealpostcodes logstream`
+### Real-Time Log Streaming
+
+The command line interface allows you to listen for requests on your key in real-time, which details the request type and what kind of response was provided. This is ideal for integration and debugging.
+
+Start listening to for incoming requests on your key with:
+
+```bash
+$ idealpostcodes logstream -k <your_key> -s <your_secret>
+
+# -k and -s flags can be omitted if your environment variables are defined
+```
+
+Available poptions for `$ idealpostcodes logstream`
+
 ```bash
 $ idealpostcodes logstream --json # Output logs as single line JSON objects
-$ idealpostcodes logstream --quiet # Strip out debug messages such as connection, reconnection or disconnect messages
+$ idealpostcodes logstream --quiet # Stops meta information such as connection, reconnection or disconnect messages from being written to stdout
 ```
 
 Since the CLI writes to stdout, you can pipe the output to perform a range of tasks in your terminal. Some examples...
@@ -326,10 +339,18 @@ $ idealpostcodes logstream | grep 'IP Address' # Write the IP address of incomin
 $ idealpostcodes logstream --json --quiet | script.sh # Process raw JSON logs in a script
 ```
 
+### Lookup Key Details
+
+You can also quickly check information on your key via your terminal.
+
+```bash
+$ idealpostcodes info -k <your_key> -s <your_secret>
+```
+
 ## Changelog
 
 *0.2.3*
-- Implemented command line interfance to stream key logs in real-time.
+- Implemented command line interfance to stream key logs in real-time and view key information.
 
 *0.2.2*
 - Implemented [addresses resource](https://ideal-postcodes.co.uk/documentation/addresses)
