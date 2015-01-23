@@ -290,31 +290,31 @@ Possible errors to look out for are listed in the [documentation](https://ideal-
 
 ## Command Line Interface (Beta)
 
-This module is also bundled with a command line interface, which provides a couple of useful tools: Real-time log streaming and key status lookup.
+This module is also bundled with a CLI, which provides a couple of useful tools: Real-time log streaming and key information lookup.
 
-The CLI needs to be installed globally (potentially with sudo privileges depending on your setup).
+The CLI requires global installation (potentially with sudo privileges, depending on your setup).
 
 ```bash
 $ npm install -g ideal-postcodes
 ```
 
-By installing globally, the `idealpostcodes` CLI will be available in your $PATH so you can run commands in your terminal. E.g.
+The `idealpostcodes` script will be available in your $PATH, allowing you to perform tasks in your terminal. E.g.
 
 ```bash
 $ idealpostcodes logstream -k <your_key> -s <your_secret>
 ```
 
-Typically the command line tool will require you to enter your api_key and secret_key. You can store your keys as environment variables to save you from having to look them up everytime.
+Typically the CLI will require you to enter your api_key and secret_key. You can store your keys as environment variables to save you from having to look them up everytime.
 
 ```bash
-$ export export IDEALPOSTCODES_KEY="<your_key>"
+$ export IDEALPOSTCODES_KEY="<your_key>"
 $ export IDEALPOSTCODES_SECRET="<your_secret>"
 $ idealpostcodes <command>
 ```
 
 ### Real-Time Log Streaming
 
-The command line interface allows you to listen for requests on your key in real-time, which details the request type and what kind of response was provided. This is ideal for integration and debugging.
+The CLI allows you to listen for requests on your key in real-time, which details the request type and what kind of response was provided. This is ideal for integration and debugging.
 
 Start listening to for incoming requests on your key with:
 
@@ -348,6 +348,9 @@ $ idealpostcodes info -k <your_key> -s <your_secret>
 ```
 
 ## Changelog
+
+*0.2.4*
+- CLI Bug Fixes.
 
 *0.2.3*
 - Implemented command line interfance to stream key logs in real-time and view key information.
