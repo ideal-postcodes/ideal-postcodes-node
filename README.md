@@ -349,6 +349,9 @@ $ idealpostcodes info -k <your_key> -s <your_secret>
 
 ## Changelog
 
+*0.2.5*
+- Fix CLI bug for 304 responses with 0 Content Body
+
 *0.2.4*
 - CLI Bug Fixes.
 
