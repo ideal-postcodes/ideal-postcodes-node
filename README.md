@@ -349,6 +349,9 @@ $ idealpostcodes info -k <your_key> -s <your_secret>
 
 ## Changelog
 
+*0.2.6*
+- Update socket.io client dependency
+
 *0.2.5*
 - Fix CLI bug for 304 responses with 0 Content Body
 
