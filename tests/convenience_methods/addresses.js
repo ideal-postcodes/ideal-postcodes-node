@@ -4,6 +4,7 @@ var key;
 var IdealPostcodes = require('../../lib/index.js');
 var assert = require('chai').assert;
 var helper = require("../helpers/");
+var httpMock = helper.httpMock;
 var testConfig = {
 	key: "gandhi",
 	host: "localhost",
@@ -12,12 +13,22 @@ var testConfig = {
 var idealPostcodes;
 
 describe ("Address resource convenience methods", function () {
+	var scope;
+
 	beforeEach(function () {
 		idealPostcodes = IdealPostcodes(testConfig);
 	});
 
+	afterEach(function () {
+		if (scope) {
+			assert.isTrue(scope.isDone());
+			scope = undefined;
+		}
+	});
+
 	describe("#lookupAddress", function () {
 		it ("returns address results for query string", function (done) {
+			scope = httpMock.addresses.success();
 			idealPostcodes.lookupAddress("High Street", function (error, searchResults) {
 				if (error) return done(error);
 				assert.equal(searchResults.code, 2000);
@@ -35,6 +46,7 @@ describe ("Address resource convenience methods", function () {
 			});
 		});
 		it ("returns address results for query object", function (done) {
+			scope = httpMock.addresses.successInverted();
 			idealPostcodes.lookupAddress({ query: "High Street" }, function (error, searchResults) {
 				if (error) return done(error);
 				assert.equal(searchResults.code, 2000);
@@ -46,6 +58,7 @@ describe ("Address resource convenience methods", function () {
 			});
 		});
 		it ("is sensitive to limit attribute", function (done) {
+			scope = httpMock.addresses.successLimited();
 			idealPostcodes.lookupAddress({ 
 				query: "High Street",
 				limit: 1
@@ -58,6 +71,7 @@ describe ("Address resource convenience methods", function () {
 			});
 		});
 		it ("is sensitive to page attribute", function (done) {
+			scope = httpMock.addresses.successPaginated();
 			idealPostcodes.lookupAddress({ 
 				query: "High Street",
 				page: 2
@@ -69,22 +83,29 @@ describe ("Address resource convenience methods", function () {
 			});
 		});
 		it ("returns an error if invalid key", function (done) {
+			scope = httpMock.addresses.invalidKey();
 			var oldKey = idealPostcodes.config.key;
 			idealPostcodes.config.key = "foo";
 			idealPostcodes.lookupAddress(helper.invalidKeyPostcode, function (error, result) {
-				helper.isInvalidKeyError(error);
 				idealPostcodes.config.key = oldKey;
+				helper.isInvalidKeyError(error);
 				done();
 			});
 		});
 		it ("returns an error if limit reached", function (done) {
-			idealPostcodes.lookupAddress(helper.limitReachedPostcode, function (error, result) {
+			scope = httpMock.addresses.limitReached();
+			idealPostcodes.lookupAddress({
+				query: helper.limitReachedPostcode
+			}, function (error, result) {
 				helper.isLimitReachedError(error);
 				done();
 			});
 		});
-		it ("returns and error if balance is depleted", function (done) {
-			idealPostcodes.lookupAddress(helper.balanceDepletedPostcode, function (error, result) {
+		it ("returns an error if balance is depleted", function (done) {
+			scope = httpMock.addresses.balanceDepleted();
+			idealPostcodes.lookupAddress({
+				query: helper.balanceDepletedPostcode
+			}, function (error, result) {
 				helper.isBalanceDepletedError(error);
 				done();
 			});
@@ -93,6 +114,7 @@ describe ("Address resource convenience methods", function () {
 
 	describe("#lookupUdprn", function () {
 		it ("returns an address", function (done) {
+			scope = httpMock.udprn.success();
 			idealPostcodes.lookupUdprn(helper.testUdprn, function (error, address) {
 				if (error) return done(error);
 				helper.isAddressObject(address);
@@ -100,6 +122,7 @@ describe ("Address resource convenience methods", function () {
 			});
 		});
 		it ("returns null if address does not exist", function (done) {
+			scope = httpMock.udprn.invalid();
 			idealPostcodes.lookupUdprn(helper.invalidUdprn, function (error, address) {
 				if (error) return done(error);
 				assert.isNull(address);
@@ -107,21 +130,24 @@ describe ("Address resource convenience methods", function () {
 			});
 		});
 		it ("returns an error if invalid key", function (done) {
+			scope = httpMock.udprn.invalidKey();
 			var oldKey = idealPostcodes.config.key;
 			idealPostcodes.config.key = "foo";
 			idealPostcodes.lookupUdprn(helper.testUdprn, function (error, result) {
-				helper.isInvalidKeyError(error);
 				idealPostcodes.config.key = oldKey;
+				helper.isInvalidKeyError(error);
 				done();
 			});
 		});
 		it ("returns an error if limit reached", function (done) {
+			scope = httpMock.udprn.limitReached();
 			idealPostcodes.lookupUdprn(helper.limitReachedUdprn, function (error, result) {
 				helper.isLimitReachedError(error);
 				done();
 			});
 		});
-		it ("returns and error if balance is depleted", function (done) {
+		it ("returns an error if balance is depleted", function (done) {
+			scope = httpMock.udprn.depleted();
 			idealPostcodes.lookupUdprn(helper.balanceDepletedUdprn, function (error, result) {
 				helper.isBalanceDepletedError(error);
 				done();

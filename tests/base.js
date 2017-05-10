@@ -2,23 +2,35 @@
 
 var helper = require("./helpers/index.js");
 var assert = require("chai").assert;
+var httpMock = helper.httpMock;
 
 var Base = require("../lib/resources/index.js");
 
 describe("Base Resource Class", function () {
-	var base;
+	var base, scope;
+
 	beforeEach(function () {
 		base = new Base({
 			host: "127.0.0.1",
 			port: 8016
 		})
 	});
+
+	afterEach(function () {
+		if (scope) {
+			assert.isTrue(scope.isDone());
+			scope = undefined;
+		}
+	});
+	
 	describe("#request", function () {
 		it ("generates a http request", function (done) {
 			var options = {
 				path: "/",
 				method: "GET"
 			};
+
+			scope = httpMock.base.success();
 
 			base.request(options, function (error, response) {
 				if (error) return done(error);
@@ -53,6 +65,8 @@ describe("Base Resource Class", function () {
 				});
 			}
 			it ("returns an error if invalid syntax submitted to API", function (done) {
+				scope = httpMock.base.invalidSyntax();
+
 				base.request({
 					path: "/invalid_syntax",
 					method: "GET"
@@ -63,6 +77,8 @@ describe("Base Resource Class", function () {
 				});
 			});
 			it ("returns an error if invalid key", function (done) {
+				scope = httpMock.base.invalidKey();
+
 				base.request({
 					path: "/invalid_key",
 					method: "GET"
@@ -73,6 +89,8 @@ describe("Base Resource Class", function () {
 				});
 			});
 			it ("returns an error if key balance depleted", function (done) {
+				scope = httpMock.base.depletedKey();
+
 				base.request({
 					path: "/balance_depleted",
 					method: "GET"
@@ -83,6 +101,8 @@ describe("Base Resource Class", function () {
 				});
 			});
 			it ("returns an error if limit reached", function (done) {
+				scope = httpMock.base.limitReached();
+
 				base.request({
 					path: "/limit_reached",
 					method: "GET"
@@ -93,6 +113,8 @@ describe("Base Resource Class", function () {
 				});
 			});
 			it ("returns an error for invalid JSON response from API", function (done) {
+				scope = httpMock.base.invalidJson();
+
 				base.request({
 					path: "/invalidjson",
 					method: "GET"

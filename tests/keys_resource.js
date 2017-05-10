@@ -2,6 +2,7 @@
 
 var helper = require("./helpers/index.js");
 var assert = require("chai").assert;
+var httpMock = helper.httpMock;
 
 var Keys = require("../lib/resources/keys.js");
 var keys;
@@ -10,6 +11,15 @@ var testKey = helper.testKey;
 var testSecret = helper.testSecret;
 
 describe ("Keys Resource", function () {
+	var scope;
+
+	afterEach(function () {
+		if (scope) {
+			assert.isTrue(scope.isDone());
+			scope = undefined;
+		}
+	});
+
 	describe ("get", function () {
 		beforeEach(function () {
 			keys = new Keys({
@@ -19,6 +29,7 @@ describe ("Keys Resource", function () {
 			});
 		});
 		it ("returns true if key available", function (done) {
+			scope = httpMock.keys.available();
 			keys.get(helper.availableTestKey, function (error, response) {
 				if (error) return done(error);
 				assert.equal(response.code, 2000);
@@ -27,6 +38,7 @@ describe ("Keys Resource", function () {
 			});
 		});
 		it ("returns false if key not available", function (done) {
+			scope = httpMock.keys.notAvailable();
 			keys.get(helper.notAvailableTestKey, function (error, response) {
 				if (error) return done(error);
 				assert.equal(response.code, 2000);
@@ -35,6 +47,7 @@ describe ("Keys Resource", function () {
 			});
 		});
 		it ("returns 404 if key does not exist", function (done) {
+			scope = httpMock.keys.notFound();
 			keys.get("foo", function (error, response) {
 				helper.isInvalidKeyError(error);
 				done();
@@ -43,6 +56,7 @@ describe ("Keys Resource", function () {
 	});
 	describe("get with secret key", function () {
 		it ("returns key information", function (done) {
+			scope = httpMock.keys.secretSuccess();
 			keys.get(testKey, testSecret, function (error, response) {
 				if (error) return done(error);
 				assert.property(response.result, "lookups_remaining");
@@ -54,12 +68,14 @@ describe ("Keys Resource", function () {
 			});
 		});
 		it ("returns error if invalid key", function (done) {
+			scope = httpMock.keys.secretInvalid();
 			keys.get("foo", testSecret, function (error, response) {
 				helper.isInvalidKeyError(error);
 				done();
 			});
 		});
 		it ("returns an error if invalid secret", function (done) {
+			scope = httpMock.keys.secretInvalidUserToken();
 			keys.get(testKey, "foo", function (error, response) {
 				assert.match(error.message, /4012/);
 				done();

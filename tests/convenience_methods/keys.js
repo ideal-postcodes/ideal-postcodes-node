@@ -4,6 +4,7 @@ var key;
 var IdealPostcodes = require('../../lib/index.js');
 var assert = require('chai').assert;
 var helper = require("../helpers/");
+var httpMock = helper.httpMock;
 var testConfig = {
 	key: "gandhi",
 	host: "localhost",
@@ -12,13 +13,23 @@ var testConfig = {
 var idealPostcodes;
 
 describe ("Key information convenience methods", function () {
+	var scope;
+
 	beforeEach(function () {
 		idealPostcodes = IdealPostcodes(testConfig);
+	});
+
+	afterEach(function () {
+		if (scope) {
+			assert.isTrue(scope.isDone());
+			scope = undefined;
+		}
 	});
 
 	describe("#keyAvailability", function () {
 		it ("returns true if key available", function (done) {
 			idealPostcodes.setConfig("key", helper.availableTestKey);
+			scope = httpMock.keys.available();
 			idealPostcodes.keyAvailability(function (error, info) {
 				if (error) return done(error);
 				assert.isTrue(info.available);
@@ -27,6 +38,7 @@ describe ("Key information convenience methods", function () {
 		});
 		it ("returns false if key available", function (done) {
 			idealPostcodes.setConfig("key", helper.notAvailableTestKey);
+			scope = httpMock.keys.notAvailable();
 			idealPostcodes.keyAvailability(function (error, info) {
 				if (error) return done(error);
 				assert.isFalse(info.available);
@@ -39,6 +51,7 @@ describe ("Key information convenience methods", function () {
 		it ("returns key details", function (done) {
 			idealPostcodes.setConfig("key", helper.testKey);
 			idealPostcodes.setConfig("secret", helper.testSecret);
+			scope = httpMock.keys.secretSuccess();
 			idealPostcodes.keyDetails(function (error, info) {
 				if (error) return done(error);
 				assert.property(info, "lookups_remaining");

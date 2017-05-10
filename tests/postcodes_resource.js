@@ -2,11 +2,21 @@
 
 var helper = require("./helpers/index.js");
 var assert = require("chai").assert;
+var httpMock = helper.httpMock;
 
 var Postcode = require("../lib/resources/postcodes.js");
 var postcodeResource;
 
 describe ("Postcodes Resource", function () {
+	var scope;
+
+	afterEach(function () {
+		if (scope) {
+			assert.isTrue(scope.isDone());
+			scope = undefined;
+		}
+	});
+
 	describe("get", function () {
 		beforeEach(function () {
 			postcodeResource = new Postcode({
@@ -16,6 +26,7 @@ describe ("Postcodes Resource", function () {
 			});
 		});
 		it ("returns an array of addresses for valid postcode", function (done) {
+			scope = httpMock.postcodes.success();
 			postcodeResource.get(helper.testPostcode, function (error, response) {
 				if (error) return done(error);
 				assert.equal(response.code, 2000);
@@ -24,6 +35,7 @@ describe ("Postcodes Resource", function () {
 			});
 		});
 		it ("returns a 4040 response for invalid postcode", function (done) {
+			scope = httpMock.postcodes.notFound();
 			postcodeResource.get(helper.invalidPostcode, function (error, response) {
 				if (error) return done(error);
 				assert.equal(response.code, 4040);
@@ -41,6 +53,7 @@ describe ("Postcodes Resource", function () {
 			});
 		});
 		it ("returns an array of postcodes for a valid location", function (done) {
+			scope = httpMock.geolocation.success();
 			postcodeResource.queryLocation({
 				longitude: -0.20864,
 				latitude: 51.48994
@@ -55,6 +68,8 @@ describe ("Postcodes Resource", function () {
 			});
 		});
 		it ("accepts a radius attribute", function (done) {
+			scope = httpMock.geolocation.radius50Success();
+			scope = httpMock.geolocation.radius150Success();
 			postcodeResource.queryLocation({
 				longitude: -0.20864,
 				latitude: 51.48994,
@@ -75,6 +90,7 @@ describe ("Postcodes Resource", function () {
 			});
 		});
 		it ("accepts a limit attribute", function (done) {
+			scope = httpMock.geolocation.limitSuccess();
 			postcodeResource.queryLocation({
 				longitude: -0.20864,
 				latitude: 51.48994,

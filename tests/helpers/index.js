@@ -2,11 +2,12 @@
 
 var nock = require("nock");
 var assert = require("chai").assert;
+var httpMock = require("./http_mocks.js");
 
 if (process.env.LIVE) {
 	require("./mock_server.js");
 } else {
-	require("./http_mocking.js");
+	nock.disableNetConnect();
 }
 
 if (process.env.RECORD) {
@@ -22,7 +23,7 @@ var availableTestKey = "iddqd";
 var notAvailableTestKey = "idkfa";
 
 var testKey = "gandhi";
-var testSecret = "uk_hxp6ouk0rmyXoobVJnehrsQcdvTfb";
+var testSecret = "uk_ihggl998zJW2gkgOZsj1BZBnavCPT";
 
 var testUdprn = "0";
 var invalidUdprn = "-1";
@@ -88,5 +89,6 @@ module.exports = {
 	testUdprn: testUdprn,
 	invalidUdprn: invalidUdprn,
 	balanceDepletedUdprn: balanceDepletedUdprn,
-	limitReachedUdprn: limitReachedUdprn
+	limitReachedUdprn: limitReachedUdprn,
+	httpMock: httpMock
 };
