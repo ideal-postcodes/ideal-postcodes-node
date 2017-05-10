@@ -25,11 +25,11 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "chalk": "~0.5.1",
-    "commander": "~2.6.0",
-    "lodash": "~2.4.1",
-    "qs": "~2.3.3",
-    "socket.io-client": "~1.4.8",
+    "chalk": "~1.1.3",
+    "commander": "~2.9.0",
+    "lodash": "~4.17.4",
+    "qs": "~6.4.0",
+    "socket.io-client": "~1.4.0",
     "text-table": "~0.2.0"
   },
   "devDependencies": {
