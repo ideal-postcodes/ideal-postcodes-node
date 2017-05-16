@@ -286,92 +286,11 @@ idealPostcodes.lookupPostcode("ID1 1QD", function (error, addresses) {
 });
 ```
 
-Possible errors to look out for are listed in the [documentation](https://ideal-postcodes.co.uk/documentatpion/response-codes).
+Possible errors to look out for are listed in the [documentation](https://ideal-postcodes.co.uk/documentation/response-codes).
 
-## Command Line Interface (Beta)
+## Command Line Interface
 
-This module is also bundled with a CLI, which provides a couple of useful tools: Real-time log streaming and key information lookup.
-
-The CLI requires global installation (potentially with sudo privileges, depending on your setup).
-
-```bash
-$ npm install -g ideal-postcodes
-```
-
-The `idealpostcodes` script will be available in your $PATH, allowing you to perform tasks in your terminal. E.g.
-
-```bash
-$ idealpostcodes logstream -k <your_key> -s <your_secret>
-```
-
-Typically the CLI will require you to enter your api_key and secret_key. You can store your keys as environment variables to save you from having to look them up everytime.
-
-```bash
-$ export IDEALPOSTCODES_KEY="<your_key>"
-$ export IDEALPOSTCODES_SECRET="<your_secret>"
-$ idealpostcodes <command>
-```
-
-### Real-Time Log Streaming
-
-The CLI allows you to listen for requests on your key in real-time, which details the request type and what kind of response was provided. This is ideal for integration and debugging.
-
-Start listening to for incoming requests on your key with:
-
-```bash
-$ idealpostcodes logstream -k <your_key> -s <your_secret>
-
-# -k and -s flags can be omitted if your environment variables are defined
-```
-
-Available poptions for `$ idealpostcodes logstream`
-
-```bash
-$ idealpostcodes logstream --json # Output logs as single line JSON objects
-$ idealpostcodes logstream --quiet # Stops meta information such as connection, reconnection or disconnect messages from being written to stdout
-```
-
-Since the CLI writes to stdout, you can pipe the output to perform a range of tasks in your terminal. Some examples...
-
-```bash
-$ idealpostcodes logstream > idealpostcodes.log # Write the output to a file
-$ idealpostcodes logstream | grep 'IP Address' # Write the IP address of incoming requests to console
-$ idealpostcodes logstream --json --quiet | script.sh # Process raw JSON logs in a script
-```
-
-### Lookup Key Details
-
-You can also quickly check information on your key via your terminal.
-
-```bash
-$ idealpostcodes info -k <your_key> -s <your_secret>
-```
-
-## Changelog
-
-*0.2.6*
-- Update socket.io client dependency
-
-*0.2.5*
-- Fix CLI bug for 304 responses with 0 Content Body
-
-*0.2.4*
-- CLI Bug Fixes.
-
-*0.2.3*
-- Implemented command line interfance to stream key logs in real-time and view key information.
-
-*0.2.2*
-- Implemented [addresses resource](https://ideal-postcodes.co.uk/documentation/addresses)
-
-*0.2.1*
-- Implemented [keys resource](https://ideal-postcodes.co.uk/documentation/keys)
-
-*0.2.0*
-
-- Major rewrite to make way for more convenience methods
-- Implemented [postcodes resource](https://ideal-postcodes.co.uk/documentation/postcodes). Added location-based postcode searches
-- Overhauled test suite
+This module has been movied to [ideal-postcodes-cli](https://github.com/ideal-postcodes/ideal-postcodes/cli)
 
 ## Documentation
 More documentation can be found [here](https://ideal-postcodes.co.uk/documentation/node-js)
