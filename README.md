@@ -290,7 +290,7 @@ Possible errors to look out for are listed in the [documentation](https://ideal-
 
 ## Command Line Interface
 
-This module has been movied to [ideal-postcodes-cli](https://github.com/ideal-postcodes/ideal-postcodes/cli)
+This module has been movied to [ideal-postcodes-cli](https://github.com/ideal-postcodes/ideal-postcodes-cli)
 
 ## Documentation
 More documentation can be found [here](https://ideal-postcodes.co.uk/documentation/node-js)
