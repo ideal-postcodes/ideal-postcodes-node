@@ -43,23 +43,21 @@ Use the postcode "ID1 1QD" to test integration for free. The complete list of te
 
 ```javascript
 idealPostcodes.lookupPostcode("ID1 1QD", function (error, addresses) {
-	if (error) {
-		// Implement some error handling
-	} 
-	console.log(addresses); 	
+  if (error) // Implement some error handling
+  console.log(addresses);
 });
 
-//	[ {
-//			postcode: 'ID1 1QD',
-//			post_town: 'LONDON',
-//			line_1: 'Kingsley Hall',
-//			line_2: 'Powis Road',
-//			line_3: '', 
-//			organisation_name: '',
-//			building_name: 'Kingsley Hall',
-//			udprn: 12345678 
-// 			...and so on...
-//		}, ...
+//  [{
+//    postcode: 'ID1 1QD',
+//    post_town: 'LONDON',
+//    line_1: 'Kingsley Hall',
+//    line_2: 'Powis Road',
+//    line_3: '', 
+//    organisation_name: '',
+//    building_name: 'Kingsley Hall',
+//    udprn: 12345678 
+//    ...and so on...
+//  }, ...
 ```
 
 ### Search for an address [(docs)](https://ideal-postcodes.co.uk/documentation/addresses#query)
@@ -77,23 +75,19 @@ Use the address "ID1 1QD" to test integration for free. The complete list of tes
 
 ```javascript
 idealPostcodes.lookupAddress("ID1 1QD", function (error, searchResults) {
-	if (error) {
-		// Implement some error handling
-	} 
-	console.log(searchResults); 	
+  if (error) // Implement some error handling
+  console.log(searchResults); 	
 });
 
 // or alternatively
 
 idealPostcodes.lookupAddress({
-	query: "ID1 1QD",  	// required
-	limit: 10,				 	// optional
-	page: 0 						// optional
+  query: "ID1 1QD",   // required
+  limit: 10,          // optional
+  page: 0             // optional
 }, function (error, searchResults) {
-	if (error) {
-		// Implement some error handling
-	} 
-	console.log(searchResults); 	
+  if (error) // Implement some error handling
+  console.log(searchResults); 	
 });
 
 // {
@@ -129,25 +123,23 @@ idealPostcodes.queryLocation(location, callback)
 
 ```javascript
 idealPostcodes.queryLocation({
-	longitude: -0.20864,	// Required
-	latitude: 51.48994,		// Required
-	limit: 10 		, 			// Optional, limits number of results
-	radius:	100						// Optional, limits search radius
+  longitude: -0.20864,  // Required
+  latitude: 51.48994,   // Required
+  limit: 10,            // Optional, limits number of results
+  radius:  100          // Optional, limits search radius
 }, function (error, locations) {
-	if (error) {
-		// Implement some error handling
-	} 
-	console.log(locations); 	
+  if (error) // Implement some error handling
+  console.log(locations); 	
 });
 
-//	[{
-// 		postcode: "W14 9DT",
-// 		northings: 178299,
-// 		eastings: 524466,
-// 		longitude: -0.208644362766368,
-// 		latitude: 51.4899488390558,
-// 		distance: 1.029038833
-// 		}, ...
+// [{
+//   postcode: "W14 9DT",
+//   northings: 178299,
+//   eastings: 524466,
+//   longitude: -0.208644362766368,
+//   latitude: 51.4899488390558,
+//   distance: 1.029038833
+//  }, ...
 ```
 
 ### Retrieve an address using UDPRN [(docs)](https://ideal-postcodes.co.uk/documentation/addresses#address)
@@ -165,42 +157,40 @@ Note that this method returns `null` if no matching address is found. Use the te
 
 ```javascript
 idealPostcodes.lookupUdprn(0, function (error, address) {
-	if (error) {
-		// Implement some error handling
-	} 
-	console.log(address); 
+  if (error) // Implement some error handling
+  console.log(address); 
 });
 
 // {
-//	"postcode":"ID1 1QD",
-//	"postcode_inward":"IQD",
-//	"postcode_outward":"ID1",
-//	"post_town":"LONDON",
-//	"dependant_locality":"",
-//	"double_dependant_locality":"",
-//	"thoroughfare":"Barons Court Road",
-//	"dependant_thoroughfare":"",
-//	"building_number":"2",
-//	"building_name":"",
-//	"sub_building_name":"",
-//	"po_box":"",
-//	"department_name":"",
-//	"organisation_name":"",
-//	"udprn":25962203,
-//	"postcode_type":"S",
-//	"su_organisation_indicator":"",
-//	"delivery_point_suffix":"1G",
-//	"line_1":"2 Barons Court Road",
-//	"line_2":"",
-//	"line_3":"",
-//	"premise":"2",
-//	"county": "",
-//	"district": "Hammersmith and Fulham",
-//	"ward": "North End",
-//	"longitude":-0.208644362766368,
-//	"latitude":51.4899488390558,
-//	"eastings":524466,
-//	"northings":178299
+//  "postcode":"ID1 1QD",
+//  "postcode_inward":"IQD",
+//  "postcode_outward":"ID1",
+//  "post_town":"LONDON",
+//  "dependant_locality":"",
+//  "double_dependant_locality":"",
+//  "thoroughfare":"Barons Court Road",
+//  "dependant_thoroughfare":"",
+//  "building_number":"2",
+//  "building_name":"",
+//  "sub_building_name":"",
+//  "po_box":"",
+//  "department_name":"",
+//  "organisation_name":"",
+//  "udprn":25962203,
+//  "postcode_type":"S",
+//  "su_organisation_indicator":"",
+//  "delivery_point_suffix":"1G",
+//  "line_1":"2 Barons Court Road",
+//  "line_2":"",
+//  "line_3":"",
+//  "premise":"2",
+//  "county": "",
+//  "district": "Hammersmith and Fulham",
+//  "ward": "North End",
+//  "longitude":-0.208644362766368,
+//  "latitude":51.4899488390558,
+//  "eastings":524466,
+//  "northings":178299
 // }   
 ```
 
@@ -220,10 +210,8 @@ idealPostcodes.keyAvailability(callback)
 
 ```javascript
 idealPostcodes.keyAvailability(function (error, key) {
-	if (error) {
-		// Implement some error handling
-	} 
-	console.log(key.avaialble); // => true 	
+  if (error) // Implement some error handling
+  console.log(key.avaialble); // => true 	
 });
 ```
 
@@ -239,10 +227,8 @@ idealPostcodes.keyDetails(callback)
 
 ```javascript
 idealPostcodes.keyDetails(function (error, key) {
-	if (error) {
-		// Implement some error handling
-	} 
-	console.log(key); 	
+  if (error) // Implement some error handling
+  console.log(key); 	
 });
 
 // {
@@ -280,9 +266,7 @@ Each convenience method adopts the standard javascript error handling method. I.
 
 ```javascript
 idealPostcodes.lookupPostcode("ID1 1QD", function (error, addresses) {
-	if (error) {
-		// Handle your errors here
-	} 
+  if (error) // Handle your errors here
 });
 ```
 
@@ -290,7 +274,7 @@ Possible errors to look out for are listed in the [documentation](https://ideal-
 
 ## Command Line Interface
 
-This module has been movied to [ideal-postcodes-cli](https://github.com/ideal-postcodes/ideal-postcodes-cli)
+This module has been movied to [ideal-postcodes-cli](https://github.com/ideal-postcodes/ideal-postcodes/cli)
 
 ## Documentation
 More documentation can be found [here](https://ideal-postcodes.co.uk/documentation/node-js)
