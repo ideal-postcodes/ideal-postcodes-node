@@ -22,8 +22,8 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "lodash": "~4.17.4",
-    "qs": "~6.4.0"
+    "lodash": "~4.17.11",
+    "qs": "~6.5.2"
   },
   "devDependencies": {
     "ts-node": "~7.0.1",
