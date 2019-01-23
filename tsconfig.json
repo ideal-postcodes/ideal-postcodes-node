@@ -2,8 +2,9 @@
   "compilerOptions": {
     "resolveJsonModule": true,
     "module": "commonjs",
+    "sourceMap": true,
+    "declaration": true,
     "outDir": "./dist",
-    "allowJs": true,
     "target": "es2017",
     "lib": ["es2017"]
   },
