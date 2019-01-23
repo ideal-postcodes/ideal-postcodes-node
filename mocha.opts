@@ -3,4 +3,4 @@
 --recursive
 --full-trace
 --exit
-tests/*.js tests/*.ts
+tests/*.ts
