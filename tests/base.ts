@@ -1,13 +1,14 @@
 "use strict";
 
-var helper = require("./helpers/index.js");
-var assert = require("chai").assert;
+import * as helper from "./helpers/index";
+import { assert } from "chai";
 var httpMock = helper.httpMock;
 
-var Base = require("../lib/resources/index.js");
+import Base from "../lib/resources/index";
 
 describe("Base Resource Class", function () {
-	var base, scope;
+  let base: Base;
+	var scope;
 
 	beforeEach(function () {
 		base = new Base({

@@ -14,7 +14,7 @@ var errors = {
  * @returns {null,Error} null if valid, an error if not
  */
 
-function detectError (response) {
+export function detect (response) {
 	// Return an error if invalid format 
 	if (!response.code) {
 		return invalidResponseError();
@@ -34,7 +34,7 @@ function detectError (response) {
  * Returns an invalid response error
  * @returns {Error} Invalid response error
  */
-function invalidResponseError () {
+export function invalidResponseError () {
 	return new Error("Invalid JSON return from Ideal Postcodes.");
 }
 
@@ -43,7 +43,7 @@ function invalidResponseError () {
  * @param {Number} the timeout duration in milliseconds
  * @returns {Error} Timeout error
  */
-function timeoutError (timeout) {
+export function timeoutError (timeout) {
 	return new Error("Timeout Error: Request to Ideal Postcodes timed out after " + timeout / 1000 + "s");
 }
 
@@ -51,7 +51,7 @@ function timeoutError (timeout) {
  * Returns an invalid response error
  * @returns {Error} Invalid response error
  */
-function connectionError(message) {
+export function connectionError(message) {
 	return new Error("An error occurred connecting to the Ideal Postcodes API. Please check the following error message:\n" + message);
 }
 
@@ -60,17 +60,9 @@ function connectionError(message) {
  * @param {Object} response - API response object
  * @returns {Error} API response error
  */
-function generalError(response) {
+export function generalError(response) {
 	var code = response.code;
 	var message = response.message;
 	return new Error("An error occured on the Ideal Postcodes API. " + message + " Error Code: " + code);
 }
 
-module.exports = {
-	detect: detectError,
-	errors: errors,
-	invalidResponseError: invalidResponseError,
-	timeoutError: timeoutError,
-	connectionError: connectionError,
-	generalError: generalError
-};

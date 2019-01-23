@@ -1,21 +1,22 @@
 "use strict";
 
-var https = require("https");
-var qs = require("qs");
-var errors = require("../errors.js");
+import * as https from "https";
+import * as qs from "qs";
+import * as errors from "../errors";
 
-function Base (config) {
-	this.config = config;
-}
+export default class Base {
+  public config: any;
 
-/**
- * Generates a HTTP request
- * @param {Object} options - configuration object requires a path {String} and method {String}
- * @param {Function} callback - invoked upon completion
- */
+  constructor(config) {
+    this.config = config;
+  }
 
-Base.prototype = {
-	request: function (options, callback) {
+  /**
+   * Generates a HTTP request
+   * @param {Object} options - configuration object requires a path {String} and method {String}
+   * @param {Function} callback - invoked upon completion
+   */
+	request(options, callback) {
 		var self = this;
 		var timeout = self.config.timeout || 30000;
 		var headers = self.config.headers || {
@@ -70,6 +71,4 @@ Base.prototype = {
     request.end();
 	}
 }
-
-module.exports = Base;
 

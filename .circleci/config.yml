@@ -1,33 +1,38 @@
+---
 version: 2
+default_steps: &default_steps
+  steps:
+    - checkout
+    - restore_cache:
+       keys:
+         - npm-deps-{{ checksum "package.json" }}
+    - run: npm install
+    - save_cache:
+       key: npm-deps-{{ checksum "package.json" }}
+       paths:
+         - node_modules/
+    - run: npm run test
+    - run: npm run coverage
+
 jobs:
-   node8:
-     docker:
-       - image: circleci/node:8
-     steps: &steps
-       - checkout
-       - restore_cache:
-           keys:
-             - npm-deps-{{ checksum "package.json" }}
-       - run: npm install
-       - save_cache:
-           key: npm-deps-{{ checksum "package.json" }}
-           paths:
-             - node_modules/
-       - run: npm test
-   node10:
-     docker:
-       - image: circleci/node:10
-     steps: *steps
+  node10:
+    <<: *default_steps
+    docker:
+      - image: "circleci/node:10"
   node11:
-     docker:
-       - image: circleci/node:11
-     steps: *steps
-   
+    <<: *default_steps
+    docker:
+      - image: "circleci/node:11"
+  node8:
+    <<: *default_steps
+    docker:
+      - image: "circleci/node:8"
+
 workflows:
-  version: 2
-  all_nodes:
+  supported_nodes:
     jobs:
       - node8
       - node10
       - node11
-       
+  version: 2
+

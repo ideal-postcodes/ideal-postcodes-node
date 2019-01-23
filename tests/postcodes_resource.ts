@@ -1,10 +1,10 @@
 "use strict";
 
-var helper = require("./helpers/index.js");
-var assert = require("chai").assert;
+import * as helper from "./helpers/index.js";
+import { assert } from "chai";
 var httpMock = helper.httpMock;
 
-var Postcode = require("../lib/resources/postcodes.js");
+import Postcode from "../lib/resources/postcodes";
 var postcodeResource;
 
 describe ("Postcodes Resource", function () {

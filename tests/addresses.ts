@@ -1,9 +1,9 @@
 "use strict";
 
 var key;
-var IdealPostcodes = require('../../lib/index.js');
-var assert = require('chai').assert;
-var helper = require("../helpers/");
+import IdealPostcodes from '../lib/index';
+import { assert } from "chai";
+import * as helper from "./helpers/index";
 var httpMock = helper.httpMock;
 var testConfig = {
 	key: "gandhi",
@@ -16,7 +16,7 @@ describe ("Address resource convenience methods", function () {
 	var scope;
 
 	beforeEach(function () {
-		idealPostcodes = IdealPostcodes(testConfig);
+		idealPostcodes = new IdealPostcodes(testConfig);
 	});
 
 	afterEach(function () {
@@ -155,3 +155,4 @@ describe ("Address resource convenience methods", function () {
 		});
 	});
 });
+

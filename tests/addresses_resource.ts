@@ -1,11 +1,11 @@
 "use strict";
 
-var helper = require("./helpers/index.js");
-var assert = require("chai").assert;
+import * as helper from "./helpers/index.js";
+import { assert } from "chai";
 var httpMock = helper.httpMock;
 
-var Addresses = require("../lib/resources/addresses.js");
-var addresses;
+import Addresses from "../lib/resources/addresses";
+var addresses: Addresses;
 
 var testKey = helper.testKey;
 var testSecret = helper.testSecret;

@@ -1,10 +1,10 @@
 "use strict";
 
-var helper = require("./helpers/index.js");
-var assert = require("chai").assert;
+import * as helper from "./helpers/index";
+import { assert } from "chai";
 var httpMock = helper.httpMock;
 
-var Keys = require("../lib/resources/keys.js");
+import Keys from "../lib/resources/keys";
 var keys;
 
 var testKey = helper.testKey;
@@ -30,7 +30,7 @@ describe ("Keys Resource", function () {
 		});
 		it ("returns true if key available", function (done) {
 			scope = httpMock.keys.available();
-			keys.get(helper.availableTestKey, function (error, response) {
+			keys.get(helper.availableTestKey, null, function (error, response) {
 				if (error) return done(error);
 				assert.equal(response.code, 2000);
 				assert.isTrue(response.result.available);
@@ -39,7 +39,7 @@ describe ("Keys Resource", function () {
 		});
 		it ("returns false if key not available", function (done) {
 			scope = httpMock.keys.notAvailable();
-			keys.get(helper.notAvailableTestKey, function (error, response) {
+			keys.get(helper.notAvailableTestKey, null, function (error, response) {
 				if (error) return done(error);
 				assert.equal(response.code, 2000);
 				assert.isFalse(response.result.available);
@@ -48,7 +48,7 @@ describe ("Keys Resource", function () {
 		});
 		it ("returns 404 if key does not exist", function (done) {
 			scope = httpMock.keys.notFound();
-			keys.get("foo", function (error, response) {
+			keys.get("foo", null, function (error, response) {
 				helper.isInvalidKeyError(error);
 				done();
 			});

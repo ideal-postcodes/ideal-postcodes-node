@@ -1,8 +1,8 @@
 "use strict";
 
-var helper = require("./helpers/index.js");
-var assert = require("chai").assert;
-var errors = require("../lib/errors");
+import * as helper from "./helpers/index";
+import { assert } from "chai";
+import * as errors from "../lib/errors";
 
 describe("Errors module", function () {
 
@@ -31,9 +31,7 @@ describe("Errors module", function () {
 
 	describe("detect", function () {
 		it ("detects invalid syntax", function () {
-			var error = errors.detect({
-				"code": 4000
-			});
+      var error = <Error> errors.detect({ "code": 4000 });
 			assert.isNotNull(error);
 			assert.match(error.message, /invalid\ssyntax\ssubmitted/i);
 		});
@@ -63,13 +61,13 @@ describe("Errors module", function () {
 		});
 
 		it ("returns an error if invalid no code response from API", function () {
-			var error = errors.detect({});
+      var error = <Error> errors.detect({});
 			assert.isNotNull(error);
-			assert.match(error.message, /invalid\sjson/i);
+			if (error) assert.match(error.message, /invalid\sjson/i);
 		});
 
 		it ("returns an error if code is not a valid number", function () {
-			var error = errors.detect({
+      var error = <Error>errors.detect({
 				"code": "foo"
 			});
 			assert.isNotNull(error);
