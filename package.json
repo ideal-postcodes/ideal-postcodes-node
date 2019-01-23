@@ -6,6 +6,7 @@
   "types": "dist/lib/index.d.ts",
   "homepage": "https://ideal-postcodes.co.uk/",
   "scripts": {
+    "docs": "./node_modules/.bin/typedoc --mode file --entryPoint 'Ideal Postcodes Node' --target ES3 --out docs/ --name 'Ideal Postcodes Node.js Library' --theme minimal --excludePrivate --hideGenerator --excludeExternals lib/",
     "test": "NODE_ENV=test node_modules/.bin/nyc node_modules/.bin/mocha --opts mocha.opts",
     "build": "node_modules/.bin/tsc",
     "coverage": "node_modules/.bin/nyc report --reporter=text-lcov | node_modules/.bin/coveralls || true",
@@ -66,6 +67,7 @@
     "nyc": "~13.1.0",
     "ts-node": "~8.0.1",
     "tslint": "~5.12.1",
+    "typedoc": "~0.14.2",
     "typescript": "~3.2.4"
   }
 }
