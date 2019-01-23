@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "homepage": "https://ideal-postcodes.co.uk/",
   "scripts": {
-    "test": "NODE_ENV=test mocha tests/"
+    "test": "NODE_ENV=test node_modules/.bin/nyc node_modules/.bin/mocha --opts mocha.opts"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "qs": "~6.6.0"
   },
   "devDependencies": {
+    "@types/node": "~10.12.18",
     "@types/chai": "~4.1.7",
     "@types/mocha": "~5.2.5",
     "chai": "~4.2.0",
