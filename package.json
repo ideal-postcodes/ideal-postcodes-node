@@ -2,10 +2,14 @@
   "name": "ideal-postcodes",
   "version": "2.0.0",
   "description": "UK Postcode lookup API. Wrapper for Ideal-Postcodes.co.uk API uses Royal Mail's Postcode Address File (PAF).",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "homepage": "https://ideal-postcodes.co.uk/",
   "scripts": {
-    "test": "NODE_ENV=test node_modules/.bin/nyc node_modules/.bin/mocha --opts mocha.opts"
+    "test": "NODE_ENV=test node_modules/.bin/nyc node_modules/.bin/mocha --opts mocha.opts",
+    "build": "node_modules/.bin/tsc",
+    "coverage": "node_modules/.bin/nyc report --reporter=text-lcov | node_modules/.bin/coveralls || true",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -18,8 +22,30 @@
     "Mail",
     "PAF"
   ],
+  "nyc": {
+    "include": [
+      "lib/**/*.ts",
+      "lib/**/*.js"
+    ],
+    "exclude": [
+      "dist/*",
+      "**/*.d.ts"
+    ],
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "all": true
+  },
   "engines": {
-    "node": ">=8.0"
+    "node": ">=8.9"
   },
   "author": "Ideal Postcodes",
   "license": "MIT",

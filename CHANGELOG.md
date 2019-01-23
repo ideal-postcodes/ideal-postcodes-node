@@ -4,7 +4,7 @@
 
 ### Backward Breaking Changes
 
-- Minimum required version of node: >=8.0
+- Minimum required version of node: >=8.9 LTS
 
 ### Other Changes
 
