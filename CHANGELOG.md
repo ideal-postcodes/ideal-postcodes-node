@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.0] 2018-11-14
+
+### Backward Breaking Changes
+
+- Minimum required version of node: >=8.0
+
+### Other Changes
+
 ## [1.0.0] 2017-05-15
 - Moved out CLI into [ideal-postcodes-cli](https://github.com/ideal-postcodes/ideal-postcodes/cli)
 
@@ -18,3 +26,4 @@
 
 ## [0.2.2] 2014-12-10
 - Implemented [addresses resource](https://ideal-postcodes.co.uk/documentation/addresses)
+
