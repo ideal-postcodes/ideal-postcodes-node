@@ -1,3 +1,5 @@
+> As of June 2019, we've released a modern a revamped Node.js client at [@ideal-postcodes/core-node](https://github.com/ideal-postcodes/core-node). Documentation for the legacy client [ideal-postcodes](https://www.npmjs.com/package/ideal-postcodes) can be found [here](https://ideal-postcodes.co.uk/documentation/node-js-legacy).
+
 # Ideal-Postcodes.co.uk Node.js Library [![Build Status](https://travis-ci.org/ideal-postcodes/ideal-postcodes-node.png)](https://travis-ci.org/ideal-postcodes/ideal-postcodes-node)
 
 Ideal Postcodes is a simple JSON API to query UK postcodes and addresses. Find out more at [Ideal-Postcodes.co.uk](https://ideal-postcodes.co.uk/)
